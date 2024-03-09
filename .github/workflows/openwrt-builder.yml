@@ -17,15 +17,20 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: 
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: true
+  FREE_UP_DISK: false
+  UPLOAD_BIN_DIR_FOR_ARTIFACT: false
+  UPLOAD_FIRMWARE_FOR_ARTIFACT: true
+  UPLOAD_FIRMWARE_FOR_RELEASE: false
+  UPLOAD_FIRMWARE_TO_COWTRANSFER: false
+  UPLOAD_FIRMWARE_TO_WETRANSFER: true
+  ARCH: linux/amd64
+  MTARGET: x86_64
   TZ: Asia/Shanghai
 
 jobs:

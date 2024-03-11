@@ -102,11 +102,11 @@ jobs:
         #     cd ..
         #     cp -f openwrt/.config $CONFIGS/$i.config
         #   done
-          [ -e $CONFIG_FILE ] && cp -r $CONFIG_FILE openwrt/.config
+          [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
           cd openwrt
           make defconfig
           cd ..
-          cp -f openwrt/.config $CONFIG_FILE
+          cp -f openwrt/.config $CONFIGS
           cd openwrt
           rm -rf .config
 
@@ -125,7 +125,7 @@ jobs:
         run: |
           echo "## :mega:Update content" >> release.txt
 
-          echo "![](https://img.shields.io/github/downloads/smallprogram/OpenWrtAction/${{ steps.gen_release_tag.outputs.release_tag }}/total?style=flat-square)" >> release.txt
+          echo "![](https://img.shields.io/github/downloads/asxs123/OpenWrt_x86/${{ steps.gen_release_tag.outputs.release_tag }}/total?style=flat-square)" >> release.txt
 
           echo "### Firmware Information" >> release.txt
 
@@ -137,13 +137,13 @@ jobs:
           echo "**:dvd:Including vmdk format firmware and UEFI boot firmware that support ESXi virtual machines (8.0 requires tool conversion).**" >> release.txt
           echo "" >> release.txt
 
-          echo "### Openwrt Information" >> release.txt
+          # echo "### iStoreOS Information" >> release.txt
 
-          echo "**:minidisc: OpenWrt Version: $(grep -o "DISTRIB_REVISION='[^']*'" $GITHUB_WORKSPACE/openwrt/package/lean/default-settings/files/zzz-default-settings | sed "s/DISTRIB_REVISION='\([^']*\)'/\1/")**" >> release.txt
+          # echo "**:minidisc: iStoreOS Version: $(grep -o "DISTRIB_REVISION='[^']*'" $GITHUB_WORKSPACE/openwrt/package/lean/default-settings/files/zzz-default-settings | sed "s/DISTRIB_REVISION='\([^']*\)'/\1/")**" >> release.txt
           
-          PKG_VERSION=$(grep -oP 'PKG_VERSION:=\K[^ ]+' "$GITHUB_WORKSPACE/openwrt/package/lean/default-settings/Makefile")
-          PKG_RELEASE=$(grep -oP 'PKG_RELEASE:=\K[^ ]+' "$GITHUB_WORKSPACE/openwrt/package/lean/default-settings/Makefile")
-          echo "**:gear: Default-Setting Version: $PKG_VERSION.$PKG_RELEASE**" >> release.txt
+          # PKG_VERSION=$(grep -oP 'PKG_VERSION:=\K[^ ]+' "$GITHUB_WORKSPACE/openwrt/package/lean/default-settings/Makefile")
+          # PKG_RELEASE=$(grep -oP 'PKG_RELEASE:=\K[^ ]+' "$GITHUB_WORKSPACE/openwrt/package/lean/default-settings/Makefile")
+          # echo "**:gear: Default-Setting Version: $PKG_VERSION.$PKG_RELEASE**" >> release.txt
 
           echo "### Compile Information" >> release.txt
 
@@ -154,31 +154,31 @@ jobs:
           echo "platform|kernel|compile status" >> release.txt
           echo "-|-|-" >> release.txt
           echo "**:ice_cube: X86**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_X86} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R5S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R5C**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R4S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R4SE**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R2S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R2C**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: H66K**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: H68K**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: H69K**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R66S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R68S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R_Pi_3b**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_bcm27xx} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
-          echo "**:ice_cube: R_Pi_4b**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_bcm27xx} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R5S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R5C**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R4S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R4SE**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R2S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R2C**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: H66K**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: H68K**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: H69K**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R66S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R68S**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_rockchip} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R_Pi_3b**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_bcm27xx} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+          # echo "**:ice_cube: R_Pi_4b**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_bcm27xx} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
 
           touch release.txt
           echo "status=success" >> $GITHUB_OUTPUT
 
-      - name: Upload Tags To Artifact
+      - name: Upload Tags To Artifact 将标签上传到项目
         uses: actions/upload-artifact@v4
         with:
           name: release_tag_${{ steps.gen_release_tag.outputs.release_tag }}
           path: release.txt
           retention-days: 5
 
-      - name: Generate Git Log
+      - name: Generate Git Log 生成 Git 日志
         if: steps.tag.outputs.status == 'success'
         id: git_log
         run: |
@@ -199,7 +199,7 @@ jobs:
             git -C openwrt/package/custom_packages/mosdns log -n 1 --format="%H" >> git_log.txt
             echo "status=success" >> $GITHUB_OUTPUT
 
-      - name: Upload Git Log To Artifact
+      - name: Upload Git Log To Artifact 将 Git 日志上传到项目
         uses: actions/upload-artifact@v4
         if: steps.git_log.outputs.status == 'success'
         with:
@@ -207,7 +207,7 @@ jobs:
           path: git_log.txt
           retention-days: 5
 
-      - name: Generate Source Packages
+      - name: Generate Source Packages 生成源码包
         working-directory: /workdir
         id: generate_image
         run: |
@@ -222,7 +222,7 @@ jobs:
           echo "SOURCE_PATH=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
 
-      - name: Upload Source To Artifact
+      - name: Upload Source To Artifact 将源码上传到项目
         uses: actions/upload-artifact@v4
         if: steps.generate_image.outputs.status == 'success'
         with:
@@ -233,21 +233,22 @@ jobs:
   job_build:
     needs: job_init
     runs-on: ubuntu-latest
-    name: Build-OpenWrt-${{ matrix.platforms }}
+    name: Build-OpenWrt-X86
     strategy:
       fail-fast: false
-      matrix:
-        platforms: [X86, R5S, R5C, R4S, R4SE, R2S, R2C, H66K, H68K, H69K, R66S, R68S, R_PI_3b, R_PI_4b]
+      # matrix:
+      #   platforms: [X86, R5S, R5C, R4S, R4SE, R2S, R2C, H66K, H68K, H69K, R66S, R68S, R_PI_3b, R_PI_4b]
 
     steps:
-      - name: Initialization Environment
+      - name: Initialization Environment 初始化编译环境
         run: |
           sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
           df -hT
   
-      - name: Maximize Build Space
+      - name: Maximize Build Space 最大化构建空间
+      # 由于默认的 Ubuntu 环境只有 17G 左右的剩余空间，所以我们需要先利用如下 action 对编译环境进行扩容
         uses: easimon/maximize-build-space@master
         with:
           root-reserve-mb: 6144
@@ -259,12 +260,12 @@ jobs:
           remove-docker-images: 'true'
           build-mount-path: '/workdir'
 
-      - name: Checkout
+      - name: Checkout 准备完成
         uses: actions/checkout@main
         with:
           ref: ${{ needs.job_init.outputs.output_sha }}
 
-      - name: Install Packages
+      - name: Install Packages 更新并安装依赖
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
@@ -275,7 +276,7 @@ jobs:
           sudo timedatectl set-timezone "$TZ"
           df -hT
 
-      - name: Initialization Directory
+      - name: Initialization Directory 初始化目录
         working-directory: /workdir
         id: init_directory
         run: |
@@ -287,20 +288,20 @@ jobs:
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ln -sf /workdir/download $GITHUB_WORKSPACE/download
 
-      - name: Download Source From Artifacts
+      - name: Download Source From Artifacts 从 Artifacts 下载源代码
         id : download
         uses: actions/download-artifact@v4
         with:
           name: Source_${{ needs.job_init.outputs.output_release_tag }}
           path: download
 
-      - name: Download Tags
+      - name: Download Tags 下载标签
         uses: actions/download-artifact@v4
         with:
           name: release_tag_${{ needs.job_init.outputs.output_release_tag }}
           path: download
 
-      - name: File Extraction
+      - name: File Extraction 文件提取
         working-directory: /workdir
         run: |
           echo "source packages size:"
@@ -312,13 +313,14 @@ jobs:
           cd ..
           sudo chown -R $USER:$GROUPS /workdir/openwrt
 
-      - name: Load Configuration
+      - name: Load Configuration 负载配置
         run: |
-          [ -e $CONFIGS/${{ matrix.platforms }}.config ] && cp -r $CONFIGS/${{ matrix.platforms }}.config openwrt/.config
+          # [ -e $CONFIGS/${{ matrix.platforms }}.config ] && cp -r $CONFIGS/${{ matrix.platforms }}.config openwrt/.config
+          [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
           cd openwrt
           make defconfig
 
-      - name: Download Package
+      - name: Download Package 下载软件包
         id: package
         run: |
           df -hT
@@ -332,13 +334,15 @@ jobs:
         uses: mxschmitt/action-tmate@v3.16
         if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
 
-      - name: Compile Tools
+      - name: Compile Tools 编译工具
         id: compile_tools
         run: |
           cd openwrt
           is_complie_error=0
 
+          # 是否显示有关编译的详细信息
           if [[ "${{ github.event.inputs.is_display_detailed }}" == "true" ]]; then
+            # 是否单线程编译
             if [[ "${{ github.event.inputs.is_single_threaded }}" == "true" ]]; then
                 echo "1 threads compile tools"
                 make tools/compile -j1 V=s
@@ -370,7 +374,7 @@ jobs:
 
           df -hT
 
-      - name: Compile Toolchain
+      - name: Compile Toolchain 编译工具链
         if: steps.compile_tools.outputs.status == 'success'
         id: compile_toolchain
         run: |
@@ -408,7 +412,7 @@ jobs:
 
           df -hT
 
-      - name: Generate Frimware
+      - name: Generate Frimware 编译固件
         if: steps.compile_toolchain.outputs.status == 'success'
         id: compile
         run: |
@@ -446,18 +450,18 @@ jobs:
 
           df -hT
 
-      - name: Check Space Usage
+      - name: Check Space Usage 检查磁盘空间
         if: (!cancelled())
         run: df -hT
 
-      - name: Upload Bin Directory
+      - name: Upload Bin Directory 上传bin文件夹
         uses: actions/upload-artifact@v4
         if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
         with:
-          name: OpenWrt_bin_${{ matrix.platforms }}_${{ needs.job_init.outputs.output_release_tag }}
+          name: OpenWrt_bin_X86_${{ needs.job_init.outputs.output_release_tag }}
           path: openwrt/bin
 
-      - name: Organize Files
+      - name: Organize Files 整理固件文件
         id: organize
         if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
         run: |
@@ -467,20 +471,20 @@ jobs:
           cd $GITHUB_WORKSPACE/openwrt/bin/packages/*/
           mv * $firmware_path/feeds_packages
           cd $firmware_path
-          zip -r buildinfo_${{ matrix.platforms }}.zip feeds_packages packages sha256sums version.buildinfo config.buildinfo feeds.buildinfo
+          zip -r buildinfo_X86.zip feeds_packages packages sha256sums version.buildinfo config.buildinfo feeds.buildinfo
           rm -rf packages feeds_packages sha256sums version.buildinfo config.buildinfo feeds.buildinfo
 
           echo "FIRMWARE=$firmware_path" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
 
-      - name: Upload Firmware Directory
+      - name: Upload Firmware Directory 上传固件目录
         uses: actions/upload-artifact@v4
         if: steps.organize.outputs.status == 'success' && env.UPLOAD_ARTIFACT == 'true' && !cancelled()
         with:
-          name: OpenWrt_firmware_${{ matrix.platforms }}_${{ needs.job_init.outputs.output_release_tag }}
+          name: OpenWrt_firmware_X86_${{ needs.job_init.outputs.output_release_tag }}
           path: ${{ env.FIRMWARE }}
 
-      - name: Upload Firmware To Release
+      - name: Upload Firmware To Release 自动发布固件到Releases
         uses: softprops/action-gh-release@master
         if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
         env:
@@ -493,32 +497,42 @@ jobs:
   build_status_flag:
     needs: job_build
     if: ${{ always() }}
-    name: Build-Status-Flag
+    name: Build-Status-Flag Build-Status-标志
     runs-on: ubuntu-latest
     outputs:
       checking_build_status: ${{ steps.status_checking.outputs.status }}
     steps:
-      - name: Build_status_checking
+      - name: Build_status_checking 构建状态检查
         id: status_checking
         run: |
           json_data=$(curl -s -H "Authorization: Bearer ${{ github.token }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs")
           name_conclusion_array=($(echo "$json_data" | jq -r '.jobs[] | select(.name | startswith("Build-OpenWrt-")) | "\(.name).\(.conclusion)"'))
 
-          platforms=(X86 R5S R5C R4S R4SE R2S R2C H66K H68K H69K R66S R68S R_PI_3b R_PI_4b)
+          # platforms=(X86 R5S R5C R4S R4SE R2S R2C H66K H68K H69K R66S R68S R_PI_3b R_PI_4b)
           
-          is_success_compiled=false
-          for ((i = 0; i < ${#platforms[@]}; i++)); do
-            if $is_success_compiled; then break; fi
-            platform="${platforms[i]}"
-            for item in "${name_conclusion_array[@]}"; do
-              IFS='.' read -r name conclusion <<< "$item"
-              if [[ "$name" == "Build-OpenWrt-$platform" ]]; then
-                if [[ "$conclusion" == "success" ]]; then
-                  is_success_compiled=true
-                  break
-                fi
+          # is_success_compiled=false
+          # for ((i = 0; i < ${#platforms[@]}; i++)); do
+          #   if $is_success_compiled; then break; fi
+          #   platform="${platforms[i]}"
+          #   for item in "${name_conclusion_array[@]}"; do
+          #     IFS='.' read -r name conclusion <<< "$item"
+          #     if [[ "$name" == "Build-OpenWrt-$platform" ]]; then
+          #       if [[ "$conclusion" == "success" ]]; then
+          #         is_success_compiled=true
+          #         break
+          #       fi
+          #     fi
+          #   done
+          # done
+          if $is_success_compiled; then break; fi
+          for item in "${name_conclusion_array[@]}"; do
+            IFS='.' read -r name conclusion <<< "$item"
+            if [[ "$name" == "Build-OpenWrt-X86" ]]; then
+              if [[ "$conclusion" == "success" ]]; then
+                is_success_compiled=true
+                break
               fi
-            done
+            fi
           done
 
           echo "-------------------build status--------------------------"
@@ -544,12 +558,12 @@ jobs:
     needs: [job_init, job_build, build_status_flag]
     if: ${{ always() && needs.build_status_flag.outputs.checking_build_status == 'success' }}
     runs-on: ubuntu-latest
-    name: Organize-Git-Log
+    name: Organize-Git-Log 组织 Git 日志
     outputs:
       output_sha: ${{steps.commit.outputs.commit_hash }}
        
     steps:
-    - name: Checkout
+    - name: Checkout 准备完成
       uses: actions/checkout@main
       with:
         ref: ${{ needs.job_init.outputs.output_sha }}
@@ -702,7 +716,7 @@ jobs:
           json_data=$(curl -s -H "Authorization: Bearer ${{ github.token }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs")
           name_conclusion_array=($(echo "$json_data" | jq -r '.jobs[] | select(.name | startswith("Build-OpenWrt-")) | "\(.name).\(.conclusion)"'))
 
-          platforms=(X86 R5S R5C R4S R4SE R2S R2C H66K H68K H69K R66S R68S R_PI_3b R_PI_4b)
+          # platforms=(X86 R5S R5C R4S R4SE R2S R2C H66K H68K H69K R66S R68S R_PI_3b R_PI_4b)
 
           echo "-------------------build status--------------------------"
           for item in "${name_conclusion_array[@]}"; do
@@ -712,21 +726,43 @@ jobs:
           done
           echo "-----------------------------------------------------------"
           
-          for ((i = 0; i < ${#platforms[@]}; i++)); do
-            platform="${platforms[i]}"
-            is_error=false
-            row=$((i+17))s
-            for item in "${name_conclusion_array[@]}"; do
-              IFS='.' read -r name conclusion <<< "$item"          
-              if [[ "$name" == "Build-OpenWrt-$platform" ]]; then
-                if [[ "$conclusion" == "success" ]]; then
-                  break
-                else
-                  is_error=true
-                  break
-                fi
+          # for ((i = 0; i < ${#platforms[@]}; i++)); do
+          #   platform="${platforms[i]}"
+          #   is_error=false
+          #   row=$((i+17))s
+          #   for item in "${name_conclusion_array[@]}"; do
+          #     IFS='.' read -r name conclusion <<< "$item"          
+          #     if [[ "$name" == "Build-OpenWrt-$platform" ]]; then
+          #       if [[ "$conclusion" == "success" ]]; then
+          #         break
+          #       else
+          #         is_error=true
+          #         break
+          #       fi
+          #     fi
+          #   done
+            
+          #   if $is_error; then
+          #     echo "is_error be true: $is_error"
+          #     sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-failure-red?logo=githubactions\&logoColor=red/" release.txt;
+          #   else
+          #     echo "is_error be false: $is_error"
+          #     sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-passing-green?logo=githubactions\&logoColor=green/" release.txt;
+          #   fi
+          # done
+          is_error=false
+          row=$((17))s
+          for item in "${name_conclusion_array[@]}"; do
+            IFS='.' read -r name conclusion <<< "$item"          
+            if [[ "$name" == "Build-OpenWrt-X86" ]]; then
+              if [[ "$conclusion" == "success" ]]; then
+                break
+              else
+                is_error=true
+                break
               fi
-            done
+            fi
+          done
             
             if $is_error; then
               echo "is_error be true: $is_error"
@@ -735,7 +771,6 @@ jobs:
               echo "is_error be false: $is_error"
               sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-passing-green?logo=githubactions\&logoColor=green/" release.txt;
             fi
-          done
 
           echo "|=========================================|"
           ls git_log

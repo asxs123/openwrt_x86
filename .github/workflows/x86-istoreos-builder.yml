@@ -113,7 +113,7 @@ jobs:
         with:
           commit_message: auto update config
           branch: main
-          commit_author: asxs123
+          commit_author: asxs123 <54346276+asxs123@users.noreply.github.com>
 
       - name: Generate Release Tag 生成发布标签
         id: tag
@@ -680,7 +680,7 @@ jobs:
       with:
         commit_message: auto update git log
         branch: main
-        commit_author: smallprogram <smallprogram@foxmail.com>
+        commit_author: asxs123 <54346276+asxs123@users.noreply.github.com>
 
 
   job_organize_tags:

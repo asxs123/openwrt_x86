@@ -249,8 +249,6 @@ jobs:
           sudo pip install pyelftools
           sudo -E apt-get -qq autoremove --purge
 
-          docker rmi `docker images -q`
-          docker image prune -a -f
           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* android* || true
           sudo -E apt-get -qq clean
 

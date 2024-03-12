@@ -92,16 +92,12 @@ jobs:
           chmod +x $DIY_P2_SH
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_P2_SH
-          
+          [ -e files ] && mv files openwrt/files
+          [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
+          cd openwrt
+          make defconfig
           cd ..
-          platforms=(X86)
-          for i in "${platforms[@]}"; do
-            [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
-            cd openwrt
-            make defconfig
-            cd ..
-            cp -f openwrt/.config $CONFIGS
-          done
+          cp -f openwrt/.config $CONFIGS
           cd openwrt
           rm -rf .config
 
@@ -241,10 +237,20 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /etc/mysql /etc/php /usr/local/lib/android /opt/ghc
           sudo -E apt-get -qq update
-          sudo -E apt-get -qq install $(curl -fsSL https://github.com/smallprogram/OpenWrtAction/raw/main/diy_script/depends)
+          sudo -E apt-get -qq install $(curl -fsSL https://github.com/dracon-china/customize-istoreos-actions/raw/main/depends/ubuntu-22.04)
+          wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+          sudo python2.7 get-pip.py
+          sudo rm -rf get-pip.py
+          sudo pip install pyelftools
           sudo -E apt-get -qq autoremove --purge
+
+          docker rmi `docker images -q`
+          docker image prune -a -f
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* android* || true
           sudo -E apt-get -qq clean
+
           sudo timedatectl set-timezone "$TZ"
           df -hT
 
@@ -287,7 +293,7 @@ jobs:
 
       - name: Load Configuration 负载配置
         run: |
-          # [ -e $CONFIGS/${{ matrix.platforms }}.config ] && cp -r $CONFIGS/${{ matrix.platforms }}.config openwrt/.config
+          [ -e files ] && mv files openwrt/files
           [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
           cd openwrt
           make defconfig
@@ -548,11 +554,11 @@ jobs:
     - name: Generate Git Log
       run: |
         REPO_URLS=(
-          "https://github.com/coolsnowwolf/lede --filter=blob:none"
-          "https://github.com/coolsnowwolf/packages --filter=blob:none"
-          "https://github.com/coolsnowwolf/luci --filter=blob:none"
-          "https://git.openwrt.org/feed/routing.git"
-          "https://git.openwrt.org/feed/telephony.git"
+          "https://github.com/istoreos/istoreos --filter=blob:none" -b istoreos-22.03
+          "https://github.com/jjm2473/packages.git --filter=blob:none" -b istoreos-22.03
+          "https://github.com/jjm2473/luci.git --filter=blob:none" -b istoreos-22.03
+          "https://git.openwrt.org/feed/routing.git" -b openwrt-22.03
+          "https://git.openwrt.org/feed/telephony.git" -b openwrt-22.03
           "https://github.com/fw876/helloworld --filter=blob:none"
           "https://github.com/xiaorouji/openwrt-passwall-packages --filter=blob:none"
           "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"
@@ -565,7 +571,7 @@ jobs:
         )
         LINE_NUMBERS=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
         OUTPUT_FILES=(
-          "lede"
+          "istoreos"
           "packages"
           "luci"
           "routing"
@@ -581,9 +587,9 @@ jobs:
           "luci-app-mosdns"
         )
         TITLE_MESSAGES=(
-          "lean openwrt new commit log"
-          "lean package new commit log"
-          "lean luci new commit log"
+          "istore os new commit log"
+          "istore package new commit log"
+          "istore luci new commit log"
           "openwrt routing new commit log"
           "openwrt telephony new commit log"
           "helloworld new commit log"
@@ -736,13 +742,13 @@ jobs:
             fi
           done
             
-            if $is_error; then
-              echo "is_error be true: $is_error"
-              sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-failure-red?logo=githubactions\&logoColor=red/" release.txt;
-            else
-              echo "is_error be false: $is_error"
-              sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-passing-green?logo=githubactions\&logoColor=green/" release.txt;
-            fi
+          if $is_error; then
+            echo "is_error be true: $is_error"
+            sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-failure-red?logo=githubactions\&logoColor=red/" release.txt;
+          else
+            echo "is_error be false: $is_error"
+            sed -i "$row/build-in_progress_or_waiting.....-yellow?logo=githubactions\&logoColor=yellow/build-passing-green?logo=githubactions\&logoColor=green/" release.txt;
+          fi
 
           echo "|=========================================|"
           ls git_log
@@ -751,7 +757,7 @@ jobs:
           echo "## What's Changed" >> release.txt
 
           OUTPUT_FILES=(
-            "lede"
+            "istoreos"
             "packages"
             "luci"
             "routing"

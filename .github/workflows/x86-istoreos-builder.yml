@@ -92,6 +92,8 @@ jobs:
           chmod +x $DIY_P2_SH
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_P2_SH
+          
+          cd ..
           [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
           cd openwrt
           echo "make defconfig"

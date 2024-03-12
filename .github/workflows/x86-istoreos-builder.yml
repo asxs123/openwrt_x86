@@ -555,11 +555,11 @@ jobs:
     - name: Generate Git Log
       run: |
         REPO_URLS=(
-          "https://github.com/istoreos/istoreos --filter=blob:none" -b istoreos-22.03
-          "https://github.com/jjm2473/packages.git --filter=blob:none" -b istoreos-22.03
-          "https://github.com/jjm2473/luci.git --filter=blob:none" -b istoreos-22.03
-          "https://git.openwrt.org/feed/routing.git" -b openwrt-22.03
-          "https://git.openwrt.org/feed/telephony.git" -b openwrt-22.03
+          "https://github.com/istoreos/istoreos --filter=blob:none -b istoreos-22.03"
+          "https://github.com/jjm2473/packages.git --filter=blob:none -b istoreos-22.03"
+          "https://github.com/jjm2473/luci.git --filter=blob:none -b istoreos-22.03"
+          "https://git.openwrt.org/feed/routing.git -b openwrt-22.03"
+          "https://git.openwrt.org/feed/telephony.git -b openwrt-22.03"
           "https://github.com/fw876/helloworld --filter=blob:none"
           "https://github.com/xiaorouji/openwrt-passwall-packages --filter=blob:none"
           "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"

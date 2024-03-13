@@ -45,16 +45,18 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 rm -rf ./package/lean/luci-app-adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/lean/luci-app-adguardhome
 
-# mosdns
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/ddns-go
 
-# find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-# find ./ | grep Makefile | grep mosdns | xargs rm -f
+# mosdns
+# drop mosdns and v2ray-geodata packages that come with the source
+find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+find ./ | grep Makefile | grep mosdns | xargs rm -f
 rm -rf ./feeds/luci/applications/luci-app-mosdns/
 rm -rf ./feeds/packages/net/mosdns/
 rm -rf ./package/custom_packages/mosdns
-# rm -rf feeds/packages/net/v2ray-geodata/
+rm -rf feeds/packages/net/v2ray-geodata/
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 ./package/custom_packages/mosdns
-# git clone https://github.com/sbwml/v2ray-geodata ./package/custom_packages/v2ray-geodata
+git clone https://github.com/sbwml/v2ray-geodata ./package/custom_packages/v2ray-geodata
 
 
 # if [ ! -d "./package/lean/luci-app-argon-config" ]; then git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config;   else cd ./package/lean/luci-app-argon-config; git stash; git stash drop; git pull; cd ..; cd ..; cd ..; fi;

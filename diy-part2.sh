@@ -36,50 +36,6 @@ is_wsl2op=$1
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.1.3/g' package/base-files/files/bin/config_generate
 
-rm -rf ./feeds/kiddin9/luci-theme-argon
-rm -rf ./feeds/kiddin9/luci-app-argon-config
-rm -rf ./feeds/kiddin9/luci-app-autotimeset
-rm -rf ./feeds/kiddin9/luci-app-baidupcs-web
-rm -rf ./feeds/kiddin9/luci-app-cifs-mount
-rm -rf ./feeds/kiddin9/luci-app-filetransfer
-rm -rf ./feeds/kiddin9/luci-app-nfs
-rm -rf ./feeds/kiddin9/luci-app-vlmcsd
-rm -rf ./feeds/kiddin9/luci-lib-fs
-rm -rf ./feeds/kiddin9/vlmcsd
-rm -rf ./feeds/kiddin9/aliyundrive-webdav
-rm -rf ./feeds/kiddin9/baidupcs-web
-rm -rf ./feeds/kiddin9/gowebdav
-rm -rf ./feeds/kiddin9/homeredirect
-rm -rf ./feeds/kiddin9/luci-app-LingTiGameAcc
-rm -rf ./feeds/kiddin9/luci-app-airplay2
-rm -rf ./feeds/kiddin9/luci-app-aliyundrive-webdav
-rm -rf ./feeds/kiddin9/luci-app-arpbind
-rm -rf ./feeds/kiddin9/luci-app-cpulimit
-rm -rf ./feeds/kiddin9/luci-app-fileassistant
-rm -rf ./feeds/kiddin9/luci-app-gowebdav
-rm -rf ./feeds/kiddin9/luci-app-homeredirect
-rm -rf ./feeds/kiddin9/luci-app-pushbot
-rm -rf ./feeds/kiddin9/luci-app-qbittorrent
-rm -rf ./feeds/kiddin9/luci-app-rclone
-rm -rf ./feeds/kiddin9/luci-app-smartdns
-rm -rf ./feeds/kiddin9/luci-app-socat
-rm -rf ./feeds/kiddin9/luci-app-syncdial
-rm -rf ./feeds/kiddin9/luci-app-uugamebooster
-rm -rf ./feeds/kiddin9/luci-app-vsftpd
-rm -rf ./feeds/kiddin9/luci-app-zerotier
-rm -rf ./feeds/kiddin9/qBittorrent-static
-rm -rf ./feeds/kiddin9/qBittorrent
-rm -rf ./feeds/kiddin9/smartdns
-rm -rf ./feeds/kiddin9/uugamebooster
-rm -rf ./feeds/kiddin9/vsftpd-alt
-rm -rf ./feeds/kiddin9/luci-app-diskman
-rm -rf ./feeds/kiddin9/homebox
-rm -rf ./feeds/kiddin9/luci-app-cpufreq
-rm -rf ./feeds/kiddin9/luci-app-fan
-rm -rf ./feeds/kiddin9/luci-app-homebox
-rm -rf ./feeds/kiddin9/luci-app-tasks
-rm -rf ./feeds/kiddin9/luci-lib-mac-vendor
-
 rm -rf ./package/lean/luci-app-adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/lean/luci-app-adguardhome
 

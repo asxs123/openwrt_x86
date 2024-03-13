@@ -160,9 +160,9 @@ jobs:
             git -C openwrt/feeds/routing log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/telephony log -n 1 --format="%H" >> git_log.txt
             # git -C openwrt/feeds/helloworld log -n 1 --format="%H" >> git_log.txt
-            git -C openwrt/feeds/passwall_packages log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/passwall_packages log -n 1 --format="%H" >> git_log.txt
             # git -C openwrt/feeds/passwall log -n 1 --format="%H" >> git_log.txt
-            git -C openwrt/feeds/passwall2 log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/passwall2 log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/OpenClash log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/third/luci-theme-argon log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/third/luci-app-argon-config log -n 1 --format="%H" >> git_log.txt
@@ -561,10 +561,10 @@ jobs:
           "https://github.com/jjm2473/luci.git --filter=blob:none -b istoreos-22.03"
           "https://git.openwrt.org/feed/routing.git -b openwrt-22.03"
           "https://git.openwrt.org/feed/telephony.git -b openwrt-22.03"
-          "https://github.com/fw876/helloworld --filter=blob:none"
-          "https://github.com/xiaorouji/openwrt-passwall-packages --filter=blob:none"
-          "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"
-          "https://github.com/xiaorouji/openwrt-passwall2 --filter=blob:none"
+          # "https://github.com/fw876/helloworld --filter=blob:none"
+          # "https://github.com/xiaorouji/openwrt-passwall-packages --filter=blob:none"
+          # "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"
+          # "https://github.com/xiaorouji/openwrt-passwall2 --filter=blob:none"
           "https://github.com/vernesong/OpenClash.git --filter=blob:none"
           "https://github.com/jerrykuku/luci-theme-argon.git --filter=blob:none -b 18.06"
           "https://github.com/jerrykuku/luci-app-argon-config.git --filter=blob:none -b 18.06"
@@ -578,10 +578,10 @@ jobs:
           "luci"
           "routing"
           "telephony"
-          "helloworld"
-          "openwrt-passwall-packages"
-          "openwrt-passwall"
-          "openwrt-passwall2"
+          # "helloworld"
+          # "openwrt-passwall-packages"
+          # "openwrt-passwall"
+          # "openwrt-passwall2"
           "OpenClash"
           "luci-theme-argon"
           "luci-app-argon-config"
@@ -594,10 +594,10 @@ jobs:
           "istore luci new commit log"
           "openwrt routing new commit log"
           "openwrt telephony new commit log"
-          "helloworld new commit log"
-          "passwall packages new commit log"
-          "passwall new commit log"
-          "passwall2 new commit log"
+          # "helloworld new commit log"
+          # "passwall packages new commit log"
+          # "passwall new commit log"
+          # "passwall2 new commit log"
           "openclash new commit log"
           "luci-theme-argon new commit log"
           "luci-app-argon-config new commit log"
@@ -764,10 +764,10 @@ jobs:
             "luci"
             "routing"
             "telephony"
-            "helloworld"
-            "openwrt-passwall-packages"
-            "openwrt-passwall"
-            "openwrt-passwall2"
+            # "helloworld"
+            # "openwrt-passwall-packages"
+            # "openwrt-passwall"
+            # "openwrt-passwall2"
             "OpenClash"
             "luci-theme-argon"
             "luci-app-argon-config"

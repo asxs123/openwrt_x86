@@ -54,7 +54,7 @@ jobs:
       - name: Generate Tag Name 生成标签名字
         id: gen_release_tag
         run: |
-          echo "release_tag=multi-platform_$(date +"%Y.%m.%d_%H.%M.%S")" >> $GITHUB_OUTPUT
+          echo "release_tag=istoreos-X86_$(date +"%Y.%m.%d_%H.%M.%S")" >> $GITHUB_OUTPUT
           sudo timedatectl set-timezone "$TZ"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
@@ -123,12 +123,12 @@ jobs:
 
           echo "### Firmware Information" >> release.txt
 
-          echo "**:loudspeaker:Cancel the ext4 format and only keep the squashfs format.**" >> release.txt
-          echo "**:computer:Including traditional IMG format firmware and UEFI boot firmware.**" >> release.txt
-          echo "**:cd:Including qcow2 format firmware and UEFI boot firmware supporting pve virtual machine.**" >> release.txt
-          echo "**:cd:Including vdi format firmware and UEFI boot firmware supporting Visual Box virtual machine.**" >> release.txt
-          echo "**:cd:Including vhdx format firmware and UEFI boot firmware supporting Hyper-v virtual machines.**" >> release.txt
-          echo "**:dvd:Including vmdk format firmware and UEFI boot firmware that support ESXi virtual machines (8.0 requires tool conversion).**" >> release.txt
+          echo "**:loudspeaker:取消ext4格式，只保留squashfs格式。**" >> release.txt
+          echo "**:computer:包括传统IMG格式固件和UEFI启动固件。**" >> release.txt
+          # echo "**:cd:包括qcow2格式固件和支持pve虚拟机的UEFI启动固件。**" >> release.txt
+          # echo "**:cd:包括支持Visual Box虚拟机的vdi格式固件和UEFI启动固件。**" >> release.txt
+          # echo "**:cd:包括vhdx格式固件和支持Hyper-v虚拟机的UEFI启动固件。**" >> release.txt
+          echo "**:dvd:包括支持ESXi虚拟机的vmdk格式固件和UEFI启动固件（8.0需要工具转换）。**" >> release.txt
           echo "" >> release.txt
 
           echo "### Compile Information" >> release.txt

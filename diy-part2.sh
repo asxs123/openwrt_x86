@@ -47,6 +47,8 @@ git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/le
 
 git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/ddns-go
 
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git ./package/luci-app-unblockneteasemusic
+
 # mosdns
 # drop mosdns and v2ray-geodata packages that come with the source
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
@@ -57,6 +59,10 @@ rm -rf ./package/custom_packages/mosdns
 rm -rf feeds/packages/net/v2ray-geodata/
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 ./package/custom_packages/mosdns
 git clone https://github.com/sbwml/v2ray-geodata ./package/custom_packages/v2ray-geodata
+
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/luci-app-alist package/alist
 
 
 # if [ ! -d "./package/lean/luci-app-argon-config" ]; then git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config;   else cd ./package/lean/luci-app-argon-config; git stash; git stash drop; git pull; cd ..; cd ..; cd ..; fi;

@@ -298,7 +298,7 @@ jobs:
         run: |
           df -hT
           cd $GITHUB_WORKSPACE/openwrt
-          make download -j8
+          make download -j8 V=s
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
           df -hT
@@ -313,7 +313,7 @@ jobs:
           cd openwrt
           for package in $(ls feeds/passwall_packages); do
               if [ -d "feeds/passwall_packages/$package" ]; then
-                  make package/feeds/passwall_packages/$package/{clean,compile} -j$(nproc)
+                  make package/feeds/passwall_packages/$package/compile V=99
               fi
           done
 

@@ -313,7 +313,7 @@ jobs:
           cd openwrt
           for package in $(ls feeds/passwall_packages); do
               if [ -d "feeds/passwall_packages/$package" ]; then
-                  make package/feeds/passwall_packages/$package/compile -j$(nproc) 2>/dev/null
+                  make package/feeds/passwall_packages/$package/{clean,compile} -j$(nproc)
               fi
           done
 

@@ -1,26 +1,5 @@
 #!/bin/bash
 #
-# https://github.com/P3TERX/Actions-OpenWrt
-# File name: diy-part2.sh
-# Description: OpenWrt DIY script part 2 (After Update feeds)
-#
-# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-
-# Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
-
-# Modify default theme
-#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
-
-# Modify hostname
-#sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
-
-#!/bin/bash
-#
 # Copyright (c) 2019-2023 SmallProgram <https://github.com/smallprogram>
 #
 # This is free software, licensed under the MIT License.
@@ -60,8 +39,8 @@ rm -rf ./feeds/packages/net/v2ray-geodata/
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 ./package/custom_packages/mosdns
 git clone https://github.com/sbwml/v2ray-geodata ./package/custom_packages/v2ray-geodata
 
-rm -rf ./feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 20.x ./feeds/packages/lang/golang
+# rm -rf ./feeds/packages/lang/golang
+# git clone https://github.com/sbwml/packages_lang_golang -b 20.x ./feeds/packages/lang/golang
 # git clone https://github.com/sbwml/luci-app-alist ./package/alist
 
 
@@ -127,3 +106,13 @@ wget -qO- $CLASH_META_URL | tar xOvz > $core_path/clash_meta
 # wget -qO- $GEOSITE_URL > $goe_path/GeoSite.dat
 
 chmod +x $core_path/clash*
+
+
+echo -e "预置unblockneteasemusic内核"
+NAME="luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
+echo "$(uclient-fetch -qO- 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jsonfilter -e '@[0].sha')">"$NAME/core_local_ver"
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key

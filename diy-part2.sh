@@ -116,3 +116,14 @@ curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/b
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
+
+
+echo -e "预置adguardhome内核"
+mkdir -p luci-app-adguardhome/root/usr/bin/AdGuardHome
+adgcore="luci-app-adguardhome/root/usr/bin/AdGuardHome"
+
+adg_response=$(curl -s https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest)
+adg_tag_name=$(echo "$adg_response" | jq -r '.tag_name')
+ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$adg_tag_name/AdGuardHome_linux_amd64.tar.gz
+
+wget -qO- $CLASH_DEV_URL | tar xOvz > $adgcore

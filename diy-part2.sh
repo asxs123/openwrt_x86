@@ -108,6 +108,15 @@ wget -qO- $CLASH_META_URL | tar xOvz > $core_path/clash_meta
 chmod +x $core_path/clash*
 
 
+echo -e "预置adguardhome内核"
+mkdir -p luci-app-adguardhome/root/usr/bin/AdGuardHome
+adgcore="luci-app-adguardhome/root/usr/bin/AdGuardHome"
+
+ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
+
+wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore/AdGuardHome
+
+
 echo -e "预置unblockneteasemusic内核"
 NAME="luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
 echo "$(uclient-fetch -qO- 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jsonfilter -e '@[0].sha')">"$NAME/core_local_ver"
@@ -116,15 +125,3 @@ curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/b
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
-
-
-echo -e "预置adguardhome内核"
-mkdir -p luci-app-adguardhome/root/usr/bin/AdGuardHome
-adgcore="luci-app-adguardhome/root/usr/bin/AdGuardHome"
-
-# adg_response="$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')"
-# ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$adg_response/AdGuardHome_linux_amd64.tar.gz"
-
-ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
-
-wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore

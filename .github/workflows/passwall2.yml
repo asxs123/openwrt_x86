@@ -1,0 +1,320 @@
+#
+# Copyright (c) 2022-2023 SMALLPROGRAM <https://github.com/smallprogram>
+# Description: Auto compile
+#
+name: "Auto compile with openwrt sdk"
+on:
+  repository_dispatch:
+    types: [openwrt_source_update]
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+      is_display_detailed:
+        description: 'Whether to display detailed information about compilation'
+        required: false
+        default: 'false'
+      is_single_threaded:
+        description: 'Whether single-threaded compilation'
+        required: false
+        default: 'false'
+  # schedule:
+  #   - cron: 0 */8 * * *
+
+env:
+  REPO_URL: https://github.com/istoreos/istoreos
+  REPO_BRANCH: istoreos-22.03
+  FEEDS_CONF: feeds.conf
+  CONFIGS: x86.config
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: diy-part2.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_ARTIFACT: false
+  UPLOAD_RELEASE: true
+  TZ: Asia/Shanghai
+
+jobs:
+  job_init: 
+    runs-on: ubuntu-latest
+    name: Build-Init 编译初始化
+    outputs:
+      output_release_tag: ${{ steps.gen_release_tag.outputs.release_tag }}
+      output_sha: ${{steps.commit.outputs.commit_hash }}
+    steps:
+      - name: Generate Tag Name 生成标签名字
+        id: gen_release_tag
+        run: |
+          echo "release_tag=istoreos-X86_$(date +"%Y.%m.%d_%H.%M.%S")" >> $GITHUB_OUTPUT
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+          cd /workdir
+          sudo mkdir -p output
+          sudo chown $USER:$GROUPS /workdir/output
+          ln -sf /workdir/output $GITHUB_WORKSPACE/output
+
+      - name: Checkout 准备完成
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Clone Source Code 克隆源码
+        working-directory: /workdir
+        run: |
+          git clone $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+      - name: Load Custom Feeds 加载自定义feeds
+        run: |
+          [ -e $FEEDS_CONF ] && cp -r $FEEDS_CONF openwrt/feeds.conf.default
+          chmod +x $DIY_P1_SH
+          cd openwrt
+          $GITHUB_WORKSPACE/$DIY_P1_SH
+
+      - name: Update Feeds 更新feeds
+        run: cd openwrt && ./scripts/feeds update -a
+
+      - name: Install Feeds 安装feeds
+        run: cd openwrt && ./scripts/feeds install -a
+
+      - name: Make Defconfig Custom Configuration 加载自定义配置
+        run: |
+          chmod +x $DIY_P2_SH
+          cd openwrt
+          $GITHUB_WORKSPACE/$DIY_P2_SH
+
+          cd ..
+          [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
+          cd openwrt
+          echo "make defconfig"
+          make defconfig
+          cd ..
+          echo "更新"
+          cp -f openwrt/.config $CONFIGS
+          cd openwrt
+          rm -rf .config
+
+      - name: Git Auto Update Config Git自动更新配置
+        uses: stefanzweifel/git-auto-commit-action@v5.0.0
+        id: commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit_message: auto update config
+          branch: main
+          commit_author: asxs123 <54346276+asxs123@users.noreply.github.com>
+
+      - name: Generate Release Tag 生成发布标签
+        id: tag
+        run: |
+          echo "## :mega:Update content" >> release.txt
+
+          echo "![](https://img.shields.io/github/downloads/asxs123/OpenWrt_x86/${{ steps.gen_release_tag.outputs.release_tag }}/total?style=flat-square)" >> release.txt
+
+          echo "### Firmware Information" >> release.txt
+
+          echo "**:loudspeaker:取消ext4格式，只保留squashfs格式。**" >> release.txt
+          echo "**:computer:包括传统IMG格式固件和UEFI启动固件。**" >> release.txt
+          # echo "**:cd:包括qcow2格式固件和支持pve虚拟机的UEFI启动固件。**" >> release.txt
+          # echo "**:cd:包括支持Visual Box虚拟机的vdi格式固件和UEFI启动固件。**" >> release.txt
+          # echo "**:cd:包括vhdx格式固件和支持Hyper-v虚拟机的UEFI启动固件。**" >> release.txt
+          echo "**:dvd:包括支持ESXi虚拟机的vmdk格式固件和UEFI启动固件（8.0需要工具转换）。**" >> release.txt
+          echo "" >> release.txt
+
+          echo "### Compile Information" >> release.txt
+
+          kernel_X86=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' $GITHUB_WORKSPACE/openwrt/target/linux/x86/Makefile)
+
+          echo "platform|kernel|compile status" >> release.txt
+          echo "-|-|-" >> release.txt
+          echo "**:ice_cube: X86**|**$(sed -n '2p' $GITHUB_WORKSPACE/openwrt/include/kernel-${kernel_X86} | awk -F '-' '{print $2}' | awk -F ' =' '{print $1}')**|![](https://img.shields.io/badge/build-in_progress_or_waiting.....-yellow?logo=githubactions&logoColor=yellow&style=flat-square)" >> release.txt
+
+          touch release.txt
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Tags To Artifact 将标签上传到项目
+        uses: actions/upload-artifact@v4
+        with:
+          name: release_tag_${{ steps.gen_release_tag.outputs.release_tag }}
+          path: release.txt
+          retention-days: 5
+
+      - name: Generate Git Log 生成 Git 日志
+        if: steps.tag.outputs.status == 'success'
+        id: git_log
+        run: |
+            cd $GITHUB_WORKSPACE
+            git -C openwrt log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/packages log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/luci log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/routing log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/telephony log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/helloworld log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/passwall_packages log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/passwall log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/passwall2 log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/OpenClash log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/third/luci-theme-argon log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/feeds/third/luci-app-argon-config log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/package/lean/luci-app-adguardhome log -n 1 --format="%H" >> git_log.txt
+            git -C openwrt/package/custom_packages/mosdns log -n 1 --format="%H" >> git_log.txt
+            echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Git Log To Artifact 将 Git 日志上传到项目
+        uses: actions/upload-artifact@v4
+        if: steps.git_log.outputs.status == 'success'
+        with:
+          name: git_log_${{ steps.gen_release_tag.outputs.release_tag }}
+          path: git_log.txt
+          retention-days: 5
+
+      - name: Generate Source Packages 生成源码包
+        working-directory: /workdir
+        id: generate_image
+        run: |
+          echo "source folder size:"
+          du -hs openwrt/
+          echo
+          tar -czf output/output.tar.gz openwrt/
+
+          echo "source code size:"
+          cd output
+          ls -lh output.tar.gz
+          echo "SOURCE_PATH=$PWD" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Source To Artifact 将源码上传到项目
+        uses: actions/upload-artifact@v4
+        if: steps.generate_image.outputs.status == 'success'
+        with:
+          name: Source_${{ steps.gen_release_tag.outputs.release_tag }}
+          path: ${{ env.SOURCE_PATH }}/output.tar.gz
+          retention-days: 5
+
+  job_build:
+    needs: job_init
+    runs-on: ubuntu-latest
+    name: Build-OpenWrt-X86
+    strategy:
+      fail-fast: false
+      # matrix:
+      #   platforms: [X86, R5S, R5C, R4S, R4SE, R2S, R2C, H66K, H68K, H69K, R66S, R68S, R_PI_3b, R_PI_4b]
+
+    steps:
+      - name: Initialization Environment 初始化编译环境
+        run: |
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+          df -hT
+  
+      - name: Maximize Build Space 最大化构建空间
+      # 由于默认的 Ubuntu 环境只有 17G 左右的剩余空间，所以我们需要先利用如下 action 对编译环境进行扩容
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 6144
+          swap-size-mb: 10240
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+          build-mount-path: '/workdir'
+
+      - name: Checkout 准备完成
+        uses: actions/checkout@main
+        with:
+          ref: ${{ needs.job_init.outputs.output_sha }}
+
+      - name: Install Packages 更新并安装依赖
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /etc/mysql /etc/php /usr/local/lib/android /opt/ghc
+          sudo -E apt-get -qq update
+          # sudo -E apt-get -qq install $(curl -fsSL https://github.com/dracon-china/customize-istoreos-actions/raw/main/depends/ubuntu-22.04)
+          sudo -E apt-get -qq install $(cat $GITHUB_WORKSPACE/depends2)
+          # wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+          # sudo python2.7 get-pip.py
+          # sudo rm -rf get-pip.py
+          # sudo pip install pyelftools
+          sudo -E apt-get -qq autoremove --purge
+
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* android* || true
+          sudo -E apt-get -qq clean
+
+          sudo timedatectl set-timezone "$TZ"
+          df -hT
+
+      - name: Initialization Directory 初始化目录
+        working-directory: /workdir
+        id: init_directory
+        run: |
+          sudo mkdir -p openwrt
+          sudo mkdir -p download
+          sudo chown $USER:$GROUPS /workdir/openwrt
+          sudo chown $USER:$GROUPS /workdir/download
+
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ln -sf /workdir/download $GITHUB_WORKSPACE/download
+
+      - name: Download Source From Artifacts 从 Artifacts 下载源代码
+        id : download
+        uses: actions/download-artifact@v4
+        with:
+          name: Source_${{ needs.job_init.outputs.output_release_tag }}
+          path: download
+
+      - name: Download Tags 下载标签
+        uses: actions/download-artifact@v4
+        with:
+          name: release_tag_${{ needs.job_init.outputs.output_release_tag }}
+          path: download
+
+      - name: File Extraction 文件提取
+        working-directory: /workdir
+        run: |
+          echo "source packages size:"
+          ls -lh download/output.tar.gz
+          tar -xzf download/output.tar.gz
+          rm -rf download/output.tar.gz
+          cd download
+          echo "TAG_PATH=$PWD" >> $GITHUB_ENV
+          cd ..
+          sudo chown -R $USER:$GROUPS /workdir/openwrt
+
+      - name: Load Configuration 负载配置
+        run: |
+          [ -e files ] && mv files openwrt/files
+          [ -e $CONFIGS ] && cp -r $CONFIGS openwrt/.config
+          cd openwrt
+          make defconfig
+
+      - name: Download Package 下载软件包
+        id: package
+        run: |
+          df -hT
+          cd $GITHUB_WORKSPACE/openwrt
+          make download -j8
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+          df -hT
+      
+      - name: SSH connection to Actions
+        uses: mxschmitt/action-tmate@v3.16
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+
+      - name: compile
+        id: compile
+        run: |
+          cd openwrt
+          for package in $(ls feeds/passwall_packages); do
+              if [ -d "feeds/passwall_packages/$package" ]; then
+                  make package/feeds/passwall_packages/$package/compile -j$(nproc) 2>/dev/null
+              fi
+          done
+
+          echo "status=success" >> $GITHUB_OUTPUT

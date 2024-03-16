@@ -122,7 +122,7 @@ echo -e "预置adguardhome内核"
 mkdir -p luci-app-adguardhome/root/usr/bin/AdGuardHome
 adgcore="luci-app-adguardhome/root/usr/bin/AdGuardHome"
 
-adg_response=$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')
+adg_response="$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')"
 ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$adg_response/AdGuardHome_linux_amd64.tar.gz
 
 wget -qO- $CLASH_DEV_URL | tar xOvz > $adgcore

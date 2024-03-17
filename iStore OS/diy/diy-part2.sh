@@ -60,13 +60,13 @@ git clone https://github.com/sbwml/v2ray-geodata ./package/custom_packages/v2ray
 # sed -i 's/console=tty0//g'  target/linux/x86/image/Makefile
 
 
-rm -rf ./feeds/luci/third/luci-theme-argon/htdocs/luci-static/argon/background/
-mkdir -p ./feeds/luci/third/luci-theme-argon/htdocs/luci-static/argon/background/
+rm -rf ./feeds/third/luci-theme-argon/htdocs/luci-static/argon/background/
+mkdir -p ./feeds/third/luci-theme-argon/htdocs/luci-static/argon/background/
 
 if [ ! -n "$is_wsl2op" ]; then
     # Add default login background
-    cp -r $GITHUB_WORKSPACE/source/video/* ./feeds/luci/third/luci-theme-argon/htdocs/luci-static/argon/background/
-    cp -r $GITHUB_WORKSPACE/source/img/* ./feeds/luci/third/luci-theme-argon/htdocs/luci-static/argon/background/
+    cp -r $GITHUB_WORKSPACE/source/video/* ./feeds/third/luci-theme-argon/htdocs/luci-static/argon/background/
+    cp -r $GITHUB_WORKSPACE/source/img/* ./feeds/third/luci-theme-argon/htdocs/luci-static/argon/background/
 
     # Inject download package
     mkdir -p $GITHUB_WORKSPACE/openwrt/dl

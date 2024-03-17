@@ -33,10 +33,10 @@ on:
 env:
   REPO_URL: https://github.com/istoreos/istoreos
   REPO_BRANCH: istoreos-22.03
-  FEEDS_CONF: iStore OS/feeds_config/feeds.conf
-  CONFIGS: iStore OS/istore_config/x86.config
-  DIY_P1_SH: iStore OS/diy/diy-part1.sh
-  DIY_P2_SH: iStore OS/diy/diy-part2.sh
+  FEEDS_CONF: iStoreOS/feeds_config/feeds.conf
+  CONFIGS: iStoreOS/istore_config/x86.config
+  DIY_P1_SH: iStoreOS/diy/diy-part1.sh
+  DIY_P2_SH: iStoreOS/diy/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_ARTIFACT: false

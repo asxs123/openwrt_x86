@@ -686,7 +686,7 @@ jobs:
           json_data=$(curl -s -H "Authorization: Bearer ${{ github.token }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs")
           name_conclusion_array=($(echo "$json_data" | jq -r '.jobs[] | select(.name | startswith("Build-OpenWrt-")) | "\(.name).\(.conclusion)"'))
 
-          platforms=(X86 R5S R5C R4S R4SE R2S R2C H66K H68K H69K R66S R68S R_PI_3b R_PI_4b)
+          platforms=(X86)
 
           echo "-------------------build status--------------------------"
           for item in "${name_conclusion_array[@]}"; do

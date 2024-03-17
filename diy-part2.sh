@@ -89,8 +89,8 @@ else
 fi
 
 echo -e "预置Clash内核"
-mkdir -p luci-app-openclash/root/etc/openclash/core
-core_path="luci-app-openclash/root/etc/openclash/core"
+mkdir -p feeds/OpenClash/luci-app-openclash/root/etc/openclash/core
+core_path="feeds/OpenClash/luci-app-openclash/root/etc/openclash/core"
 # goe_path="luci-app-openclash/root/etc/openclash"
 
 CLASH_DEV_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-linux-amd64.tar.gz"
@@ -109,8 +109,8 @@ chmod +x $core_path/clash*
 
 
 echo -e "预置adguardhome内核"
-mkdir -p luci-app-adguardhome/root/usr/bin/AdGuardHome
-adgcore="luci-app-adguardhome/root/usr/bin/AdGuardHome"
+mkdir -p package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome
+adgcore="package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome"
 
 ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
 
@@ -118,7 +118,7 @@ wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore/AdGuardHome
 
 
 echo -e "预置unblockneteasemusic内核"
-NAME="luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
+NAME="package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
 echo "$(uclient-fetch -qO- 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jsonfilter -e '@[0].sha')">"$NAME/core_local_ver"
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js

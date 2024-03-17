@@ -115,6 +115,7 @@ adgcore="package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome"
 ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
 
 wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore/AdGuardHome
+chmod +x $adgcore/AdGuardHome
 
 
 echo -e "预置unblockneteasemusic内核"

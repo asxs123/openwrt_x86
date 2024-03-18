@@ -185,9 +185,9 @@ jobs:
             git -C openwrt/feeds/luci log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/routing log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/telephony log -n 1 --format="%H" >> git_log.txt
-            git -C openwrt/feeds/helloworld log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/helloworld log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/passwall_packages log -n 1 --format="%H" >> git_log.txt
-            git -C openwrt/feeds/passwall log -n 1 --format="%H" >> git_log.txt
+            # git -C openwrt/feeds/passwall log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/passwall2 log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/OpenClash log -n 1 --format="%H" >> git_log.txt
             git -C openwrt/feeds/third/luci-theme-argon log -n 1 --format="%H" >> git_log.txt

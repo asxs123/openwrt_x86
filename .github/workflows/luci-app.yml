@@ -22,11 +22,11 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: istoreos-22.03
-  FEEDS_CONF: iStoreOS/feeds_config/feeds.conf
-  CONFIGS: iStoreOS/istore_config/x86.config
-  DIY_P1_SH: iStoreOS/diy/diy-part1.sh
-  DIY_P2_SH: iStoreOS/diy/diy-part2.sh
+  REPO_BRANCH: master
+  FEEDS_CONF: lede/feeds_config/lean.feeds.conf.default
+  CONFIGS: lede/leanlede_config
+  DIY_P1_SH: lede/lean_diy/diy-part1.sh
+  DIY_P2_SH: lede/lean_diy/diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_ARTIFACT: false

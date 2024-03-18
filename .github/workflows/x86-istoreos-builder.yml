@@ -556,8 +556,8 @@ jobs:
           # "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"
           # "https://github.com/xiaorouji/openwrt-passwall2 --filter=blob:none"
           "https://github.com/vernesong/OpenClash.git --filter=blob:none"
-          "https://github.com/jerrykuku/luci-theme-argon.git --filter=blob:none -b 18.06"
-          "https://github.com/jerrykuku/luci-app-argon-config.git --filter=blob:none -b 18.06"
+          # "https://github.com/jerrykuku/luci-theme-argon.git --filter=blob:none -b 18.06"
+          # "https://github.com/jerrykuku/luci-app-argon-config.git --filter=blob:none -b 18.06"
           "https://github.com/rufengsuixing/luci-app-adguardhome.git --filter=blob:none"
           "https://github.com/sbwml/luci-app-mosdns --filter=blob:none -b v5"
         )
@@ -573,8 +573,8 @@ jobs:
           # "openwrt-passwall"
           # "openwrt-passwall2"
           "OpenClash"
-          "luci-theme-argon"
-          "luci-app-argon-config"
+          # "luci-theme-argon"
+          # "luci-app-argon-config"
           "luci-app-adguardhome"
           "luci-app-mosdns"
         )
@@ -589,8 +589,8 @@ jobs:
           # "passwall new commit log"
           # "passwall2 new commit log"
           "openclash new commit log"
-          "luci-theme-argon new commit log"
-          "luci-app-argon-config new commit log"
+          # "luci-theme-argon new commit log"
+          # "luci-app-argon-config new commit log"
           "luci-app-adguardhome new commit log"
           "luci-app-mosdns new commit log"
         )
@@ -738,8 +738,8 @@ jobs:
             # "openwrt-passwall"
             # "openwrt-passwall2"
             "OpenClash"
-            "luci-theme-argon"
-            "luci-app-argon-config"
+            # "luci-theme-argon"
+            # "luci-app-argon-config"
             "luci-app-adguardhome"
             "luci-app-mosdns"
           )

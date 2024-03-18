@@ -108,14 +108,15 @@ wget -qO- $CLASH_META_URL | tar xOvz > $core_path/clash_meta
 chmod +x $core_path/clash*
 
 
-echo -e "预置adguardhome内核"
-mkdir -p package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome
-adgcore="package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome"
+# echo -e "预置adguardhome内核"
 
-ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
+# mkdir -p package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome
+# adgcore="package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome"
 
-wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore/AdGuardHome
-chmod +x $adgcore/AdGuardHome
+# ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
+
+# wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore/AdGuardHome
+# chmod +x $adgcore/AdGuardHome
 
 
 echo -e "预置unblockneteasemusic内核"

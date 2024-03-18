@@ -104,18 +104,7 @@ jobs:
           chmod +x $DIY_P2_SH
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_P2_SH
-          
-          cd ..
-          platforms=(X86 O_PI_Z)
-          for i in "${platforms[@]}"; do
-            [ -e $CONFIGS/$i.config ] && cp -r $CONFIGS/$i.config openwrt/.config
-            cd openwrt
-            make defconfig
-            cd ..
-            cp -f openwrt/.config $CONFIGS/$i.config
-          done
-          cd openwrt
-          rm -rf .config
+          make defconfig
       
       - name: Download Package
         id: package

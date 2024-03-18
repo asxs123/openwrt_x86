@@ -36,6 +36,7 @@ git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/le
 
 git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/ddns-go
 
+rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git ./package/luci-app-unblockneteasemusic
 
 # mosdns

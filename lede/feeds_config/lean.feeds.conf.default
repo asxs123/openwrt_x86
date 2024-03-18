@@ -9,4 +9,4 @@ src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git;main
 src-git OpenClash https://github.com/vernesong/OpenClash;master
 
 # istore
-src-git store https://github.com/linkease/istore.git;main
+src-git istore https://github.com/linkease/istore;main

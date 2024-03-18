@@ -1,0 +1,447 @@
+<details> <summary> <b>luci-theme-argon new commit log :new: </b>  </summary>
+
+SHA|Author|Date|Message
+-|-|-|-
+8147b78|jjm2473|Fri Feb 2 15:03:44 2024 +0800|fix cbi dropdown
+6c65579|Liangbin Lian|Thu Jan 4 18:27:14 2024 +0800|add theme attribute for sub app
+cbad1c9|SpeedPartner|Sat Sep 2 19:23:06 2023 +0800|修复 移动端页面 下 [IPv4 WAN 状态] 和 [IPv6 WAN 状态] 显示布局未对齐
+4543246|SpeedPartner|Sun Aug 20 22:20:57 2023 +0800|改进:为 登录页面[sysauth] 中 主机名[brand-text] 增加1px的 字间距[letter-spacing]; 并将文本的 底部内间距[padding-bottom] 增加0.1rem,以避免小写字母y和g显示不全
+31459ac|SpeedPartner|Sun Aug 20 22:11:06 2023 +0800|Merge pull request #436 from yhl452493373/18.06
+43cbe43|SpeedPartner|Sun Aug 20 22:08:30 2023 +0800|精简&统一代码格式
+86da322|杨黄林|Sun Aug 20 17:36:19 2023 +0800|Update cascade.less
+5abeff5|杨黄林|Sun Aug 20 17:33:46 2023 +0800|Update cascade.css
+d7cdcef|杨黄林|Sun Aug 20 17:30:49 2023 +0800|Merge branch 'jerrykuku:18.06' into 18.06
+3af71a4|SpeedPartner|Wed Aug 2 22:46:20 2023 +0800|Update README_ZH.md
+f583d18|SpeedPartner|Wed Aug 2 22:46:16 2023 +0800|Update README.md
+b9c4a73|SpeedPartner|Mon Jul 10 21:18:57 2023 +0800|Update README_ZH.md
+74e4b04|SpeedPartner|Mon Jul 10 21:15:33 2023 +0800|Update README_ZH.md
+9258ab1|SpeedPartner|Mon Jul 10 21:15:06 2023 +0800|Update README.md
+056bf38|SpeedPartner|Mon Jul 10 21:09:10 2023 +0800|Merge pull request #429 from SpeedPartner/18.06
+8a6c87d|SpeedPartner|Mon Jul 10 03:17:31 2023 +0800|Update to v1.8.3
+cea17af|SpeedPartner|Mon Jul 10 03:15:49 2023 +0800|更新 README_ZH.md
+24518b0|SpeedPartner|Mon Jul 10 03:02:15 2023 +0800|改进/缩短 概况[overview] 和 软件包[Software] 中 占用指示条[progress bar] 内 气泡动画[sparkle animation] 的 播放时长至1s,修复在每秒自动刷新状态信息时,气泡动画无法衔接的问题
+4a54bc8|SpeedPartner|Mon Jul 10 02:30:32 2023 +0800|适配 [暗色模式]: luci-app-dockerman; -以及 luci-app-istorex 网口配置[Network Guide],网络向导[Network Guide],首页[Quick Start]
+1189a91|SpeedPartner|Mon Jul 10 02:24:44 2023 +0800|适配优化 luci-app-dockerman 和 luci-app-diskman 在本主题的按钮布局; -小小优化一下 luci-app-istorex 的 首页[Quick Start]
+8209ab6|SpeedPartner|Mon Jul 10 02:11:27 2023 +0800|补充:缩小 所有div的滚动条大小
+345f85f|SpeedPartner|Mon Jul 10 01:51:51 2023 +0800|增加pure-min.css中的 按钮 和 选框 的外边距[margin]
+b4d2854|SpeedPartner|Tue Jul 4 22:38:04 2023 +0800|更新README.md
+db6e1cd|杨黄林|Tue Jun 27 12:28:40 2023 +0800|Update manual_release.yml
+d9b36f8|SpeedPartner|Mon Jun 26 19:21:04 2023 +0800|适配/修复 luci-app-ddnsto 中 服务状态 的布局
+3fe7d00|SpeedPartner|Mon Jun 26 19:09:17 2023 +0800|Merge pull request #427 from yhl452493373/18.06
+ff1271a|SpeedPartner|Mon Jun 26 19:06:44 2023 +0800|统一代码格式
+f048381|SpeedPartner|Mon Jun 26 00:43:07 2023 +0800|将textarea与其他选框对齐
+e3fe392|杨黄林|Sun Jun 25 17:40:50 2023 +0800|修复 openclash页面tab样式问题 修复 更新固件页面样式问题
+17341bb|杨黄林|Wed Jun 21 17:44:31 2023 +0800|移除textarea的阴影。在luci18.6上的其他输入框没有阴影
+0b928e1|SpeedPartner|Sun Jun 11 01:44:38 2023 +0800|Update README.md
+f0448e1|SpeedPartner|Sun Jun 11 00:54:36 2023 +0800|Update README.md
+77e39fc|SpeedPartner|Sun Jun 11 00:54:34 2023 +0800|Update README_ZH.md
+6dc07e7|老竭力|Sat Jun 10 23:45:07 2023 +0800|Merge pull request #420 from SpeedPartner/18.06
+aa9afb7|SpeedPartner|Fri Jun 9 17:15:35 2023 +0800|Update to v1.8.2
+c27b68a|SpeedPartner|Fri Jun 9 05:08:46 2023 +0800|重做:将 左侧导航主菜单[main-left menu] 的 overflow-y 改为 scroll; -避免出现 滚动条[ScrollBar] 时,菜单内元素向左侧挤压
+79dbe0b|SpeedPartner|Fri Jun 9 03:49:26 2023 +0800|新增/改进: 为 textarea 增加 边框&内部阴影,并将其设置为垂直居中
+bb0f375|SpeedPartner|Thu Jun 8 04:49:00 2023 +0800|改进/修复 均衡负载[luci-app-mwan3] 中 状态[Load Banlancing] 的 子菜单选项卡[SubTabs] 的位置
+d0d7678|SpeedPartner|Thu Jun 8 04:28:43 2023 +0800|补充:缩小 所有textarea的滚动条大小
+828c36b|SpeedPartner|Tue May 30 03:51:15 2023 +0800|改进:页脚[footer] 中的 链接[link] 使用新标签页打开
+4ba9ea9|SpeedPartner|Tue May 30 01:58:00 2023 +0800|Update README.md
+4ef9a95|SpeedPartner|Tue May 30 01:57:25 2023 +0800|Update README.md
+066f120|老竭力|Mon May 29 23:32:40 2023 +0800|Merge pull request #416 from SpeedPartner/18.06
+10400d0|SpeedPartner|Mon May 29 19:11:14 2023 +0800|修复 textarea以及logs 的垂直滚动条宽度过细
+d0a6abe|SpeedPartner|Sat May 27 16:42:38 2023 +0800|Update to v1.8.1
+bc0a610|SpeedPartner|Sat May 27 16:36:04 2023 +0800|改进 [亮色模式] 下,子菜单选项卡[SubTabs] 的背景颜色
+e162338|SpeedPartner|Sat May 27 01:36:45 2023 +0800|更改 [亮色模式] 下,左侧导航主菜单[main-left menu] 的 滚动条[ScrollBar] 颜色,以提升辨识度
+fa1fcba|SpeedPartner|Fri May 26 18:45:19 2023 +0800|改进 左侧导航主菜单[main-left menu],避免出现 滚动条[ScrollBar] 时,菜单内元素向左侧挤压
+76ae301|SpeedPartner|Fri May 26 17:58:14 2023 +0800|css 和 less 的编码格式统一改为 UTF-8
+4d6ecd5|SpeedPartner|Fri May 26 05:34:18 2023 +0800|改进:面板标题[panel-title] 不再随横向滚动条移动
+1d6cb62|SpeedPartner|Fri May 26 05:12:23 2023 +0800|适配 luci-app-commands luci-app-ssr-plus; [暗色模式]: luci-app-bypass luci-app-clash luci-app-openclash
+0ebcc4a|SpeedPartner|Fri May 26 04:50:55 2023 +0800|排除 所有 按钮[button] 的 文本阴影[text-shadow]
+71052c7|SpeedPartner|Fri May 26 04:45:41 2023 +0800|修复 [暗色模式] 中 的某些情况下,表格顶部会出现白色边框线条
+4e87fa5|SpeedPartner|Fri May 26 04:37:59 2023 +0800|移除 添加按钮[ADD Button] 的 左侧外边距[margin-left]
+fd4d2f6|SpeedPartner|Fri May 26 04:15:59 2023 +0800|改进 滚动条[ScrollBar] 并修复 子菜单选项卡[SubTabs] 和 表格[Table] 过长或者缩小浏览器窗口时,滚动条[ScrollBar] 显示异常
+6162cee|jjm2473|Wed May 24 12:11:39 2023 +0800|fix lua generated table on narrow screen
+12b3c88|SpeedPartner|Wed May 24 04:05:39 2023 +0800|重新改进footer自动隐藏的判断,并增加隐藏footer的最低高度,避免某些浏览器出现footer与其他元素重叠
+99905fc|SpeedPartner|Wed May 24 03:46:20 2023 +0800|为 登录页面[sysauth] 适配windows系统下浏览器窗口缩放到最小宽度500px时的布局
+e093e7b|SpeedPartner|Wed May 24 03:26:43 2023 +0800|修复在缩小浏览器窗口时,主题滚动条样式可能丢失的问题
+e1066bd|SpeedPartner|Wed May 24 03:00:16 2023 +0800|改进:在 登录页面[sysauth] 中,使用视频类型背景时,视频将保持同比例缩放以铺满整个页面
+23eaaf9|SpeedPartner|Wed May 24 02:43:47 2023 +0800|追加:[亮色模式] 下 子菜单选项卡[SubTabs]的背景颜色 可跟随 自定义主色调,背景颜色将降低其透明度到15%
+5f3251b|SpeedPartner|Tue May 23 17:03:02 2023 +0800|Merge branch 'jerrykuku:18.06' into 18.06
+7eb29a1|SpeedPartner|Tue May 23 06:23:31 2023 +0800|修复 移动端 的 登录页面[sysauth] 因可拖动导致显示出模糊层以外的溢出区域,修复后该页面将不可拖动 -重做footer自动隐藏,修复在浏览器刷新时,且窗口高度过小时,footer不会自动隐藏 -将 登录页面[sysauth] 中 主机名[brand-text] 的文本长度从原先的最长3行 改为 2行 -同时调整footer自动隐藏的窗口高度为<600,避免出现footer与其他元素重叠
+f2b02bf|老竭力|Mon May 22 22:51:39 2023 +0800|Update manual_release.yml
+ca15ef0|老竭力|Sun May 21 23:11:36 2023 +0800|Merge pull request #414 from SpeedPartner/18.06
+b0c99af|SpeedPartner|Sun May 21 20:30:58 2023 +0800|重制主题图标
+5c76aa1|老竭力|Sat May 20 16:55:01 2023 +0800|Merge pull request #412 from SpeedPartner/18.06
+e5fb8f4|SpeedPartner|Sat May 20 04:40:55 2023 +0800|Update branch 18.06 to v1.8.0
+8b48647|SpeedPartner|Sat May 20 04:35:25 2023 +0800|更新主题图标,移除图标中的文本:Openwrt
+89a7ca6|SpeedPartner|Fri May 19 16:30:13 2023 +0800|移除 强调文本<em> 的 内边距[padding],避免文本排版在某些情况下出现异常
+0c84393|SpeedPartner|Fri May 19 04:40:57 2023 +0800|重做:自定义主色调不再对 登录页面[sysauth] 中 页脚[footer] 字体颜色生效
+747ddd3|SpeedPartner|Thu May 18 22:33:51 2023 +0800|改进:将 [无线信号强度] 的指示图片 居中显示
+3c6574d|SpeedPartner|Thu May 18 21:42:59 2023 +0800|重写/精简:not
+07771b9|SpeedPartner|Thu May 18 21:18:19 2023 +0800|改进 排序按钮[Sort button] 在缩小浏览器窗口时不再缩小
+04bac79|SpeedPartner|Thu May 18 20:18:38 2023 +0800|追加:改进 [暗色模式] 中自定义主色调对 变量标签<var> 的字体颜色,并增加 文本阴影[text-shadow] -修复 [暗色模式] 下 变量标签<var> 的字体颜色 无法跟随自定义主色调 -清理重复的代码
+2f80831|SpeedPartner|Thu May 18 16:46:09 2023 +0800|重做:改进 本主题 对 [luci-app-passwall] 的兼容性
+7c9b29a|SpeedPartner|Thu May 18 04:11:21 2023 +0800|排除在 警告信息框[alert-message] 和 未保存的配置[UNSAVED CHANGES] 中应用 文本阴影[text-shadow] 以避免影响文本可读性
+6c916af|SpeedPartner|Wed May 17 04:24:40 2023 +0800|追加:自定义[暗色模式]主色调,对 [左侧导航主菜单选项卡] 中的 状态[Status] & 管控[Control] 图标的颜色生效
+4c2f45e|SpeedPartner|Wed May 17 04:19:29 2023 +0800|重做:改进 描述文本[description] 的字体颜色,指定文本字体颜色,并提高不透明度 避免影响 描述文本[description] 中,跟随 自定义主色调 的 链接[link] 和 强调文本<em> 的可读性
+b57901c|SpeedPartner|Wed May 17 04:17:14 2023 +0800|改进 概况[overview] 中 占用指示条 的内部文本的可读性(增加 文本阴影[text-shadow]) -清理重复代码
+8a2eacb|SpeedPartner|Wed May 17 04:14:48 2023 +0800|改进 描述文本[description] 的字体颜色,不再使用降低透明度的方案 避免影响 描述文本[description] 中,跟随 自定义主色调 的 链接[link] 和 强调文本<em> 的可读性
+39f61a2|SpeedPartner|Wed May 17 04:11:40 2023 +0800|追加:自定义[暗色模式]主色调,对 已选中单选框[radio:checked] & 已选中复选框[checkbox:checked] 的颜色生效 -为 所有 输入框[input box],包括 单选框[radio] & 复选框[checkbox],在 指针悬浮时[hover] 增加边框变色的定位提示,边框颜色跟随 自定义主色调
+27945e0|SpeedPartner|Wed May 17 04:07:51 2023 +0800|追加:在 [暗色模式] 下,为 [左侧导航主菜单选项卡] 在 指针悬浮时[hover] & 选中时[active],添加边框和线条的阴影 -清理多余代码
+4df0c6d|老竭力|Sun May 14 22:34:40 2023 +0800|Merge pull request #409 from SpeedPartner/18.06
+78a748a|SpeedPartner|Sun May 14 05:08:25 2023 +0800|追加:自定义[暗色模式]主色调,对 登录页面[sysauth] 中 用户名 和 密码 输入框的底部线条颜色生效
+9a65619|SpeedPartner|Sun May 14 04:53:20 2023 +0800|改进 登录页面[sysauth] 中 主题Logo & 主机名[brand-text] 的布局 - 增加 主机名[brand-text] 的文本大小 - 长主机名最多可以显示三行,超过将不再显示
+ce06b26|SpeedPartner|Sun May 14 01:26:16 2023 +0800|回退;暗色模式下,链接[link] 和 强调文本<em> 的字体颜色继续对 [暗色模式]主色调 生效 -自定义主色调不再对 登录页面[sysauth] 中 页脚[footer] 字体颜色生效,避免某些壁纸的背景色在叠加模糊层后,字体不够清晰 -新增:[亮色模式] 中 强调文本<em> 对自定义主色调 生效 -新增:为 链接[link] 和 强调文本<em> 的字体添加 文本阴影[text-shadow],这将稍许改进可读性,尤其是[暗色模式]下 -新增:改进 [暗色模式] 中自定义主色调对 链接[link] 和 强调文本<em> 的字体颜色(浅色时将降低字体颜色亮度,而深色时将确保字体可读性的最低亮度)
+2ad5ee5|SpeedPartner|Mon May 8 23:45:51 2023 +0800|回退;暗色模式下,[排序按钮] 的颜色继续对 [暗色模式]主色调 生效
+24a0b95|SpeedPartner|Mon May 8 23:36:01 2023 +0800|回退;暗色模式下,[子菜单选项卡] 底部线条颜色继续对 [暗色模式]主色调 生效 -更改[子菜单选项卡]在 指针悬浮时 & 选中时 的背景颜色为#3c3c3c(深灰色) -更改[子菜单选项卡]在 指针悬浮时 & 选中时 的字体颜色为#fff(白色)
+1b1853e|SpeedPartner|Mon May 8 21:02:27 2023 +0800|回退;暗色模式下,[左侧导航主菜单] 底部线条颜色继续对 [暗色模式]主色调 生效,并补充适配 指针悬浮时 的底部线条颜色
+9f85cd4|SpeedPartner|Mon May 8 20:05:45 2023 +0800|暗色模式下,将 [左侧导航主菜单] 指针悬浮时 & 选中时 的字体颜色变更为#fff(白色)
+9f6ab74|SpeedPartner|Mon May 8 02:35:19 2023 +0800|补充编写遗漏的less,优化亮色模式下每第二行的排序按钮的颜色
+142e968|SpeedPartner|Mon May 8 01:33:36 2023 +0800|在暗色模式下,自定义主色调不再对字体颜色生效,并将颜色固定为#ccc(灰色)或者#8898aa(灰蓝色) 避免主色调在设定为深色时不够清晰
+956726b|SpeedPartner|Mon May 8 00:59:58 2023 +0800|在暗色模式下,自定义主色调不再对[排序按钮]的颜色生效,并将颜色固定为#ccc(灰白色),避免主色调在设定为深色时不够清晰
+e8cfe5d|SpeedPartner|Sun May 7 22:16:41 2023 +0800|在暗色模式下,自定义主色调不再对[左侧导航主菜单选项卡]&[子菜单选项卡]的底部线条生效,并将颜色固定为#ccc(灰白色) 避免主色调在设定部分深色后不够清晰
+d13b1d9|SpeedPartner|Fri May 5 00:52:52 2023 +0800|update 1.7.8
+da16374|SpeedPartner|Fri May 5 00:46:59 2023 +0800|改进textarea以及logs的显示字体为等宽字体,使文字排版更清晰,更整齐 -修复luci-app-ddns的日志页面未正常应用暗色模式的背景和字体颜色
+4da7130|老竭力|Thu Apr 27 11:05:24 2023 +0800|Merge pull request #406 from SpeedPartner/18.06
+44c5fd9|SpeedPartner|Mon Apr 24 05:38:11 2023 +0800|改进workflows,可在复刻仓库通用,打开复刻仓库的Actions读写权限即可使用Github Actions云编译最新主题 (注释已添加开启权限的引导说明) -更新OpenWrt SDK版本,修复18.06的SDK在ubuntu-latest中出现的gcc,g++,Python的版本依赖问题.
+af096d5|老竭力|Fri Apr 21 13:58:42 2023 +0800|Merge pull request #402 from SpeedPartner/18.06
+fe49772|SpeedPartner|Thu Apr 20 18:49:37 2023 +0800|18.06 支持 手动触发自动编译,并创建和上传到发行版
+9cb71a6|SpeedPartner|Thu Apr 20 13:42:41 2023 +0800|重新优化 [添加]按钮的位置
+4c87de8|SpeedPartner|Thu Apr 20 02:40:44 2023 +0800|回退 稍稍增大的单选框
+0ddb09f|SpeedPartner|Thu Apr 20 02:26:05 2023 +0800|优化 概况[overview] 中的 占用指示条,避免内部颜色溢出边框四角
+4494a23|SpeedPartner|Thu Apr 20 02:07:40 2023 +0800|优化 [子选项卡]的位置
+d20c82a|SpeedPartner|Thu Apr 20 01:43:54 2023 +0800|优化 [添加]按钮的位置
+57eec64|SpeedPartner|Thu Apr 20 01:25:00 2023 +0800|优化 在浏览器窗口较小时/缩小浏览器窗口时/在移动端页面时 列表内标题换行显示的最小宽度
+e4a83fe|SpeedPartner|Wed Apr 19 20:44:55 2023 +0800|重新对齐复选框;稍稍增大复选框和单选框
+112fa12|SpeedPartner|Wed Apr 19 05:37:53 2023 +0800|Merge branch 'jerrykuku:18.06' into 18.06
+2934fb9|SpeedPartner|Wed Apr 19 05:24:20 2023 +0800|使列表中的标题与选框/输入框对齐
+169b2b2|SpeedPartner|Wed Apr 19 05:15:45 2023 +0800|优化列表布局
+86b27d1|SpeedPartner|Tue Apr 18 19:09:30 2023 +0800|为 软件包[Software] 中 空闲空间[Free space] 的占用指示条 增加气泡动画,并支持跟随自定义主题颜色
+4d56662|SpeedPartner|Tue Apr 18 17:55:03 2023 +0800|减少按钮按下的阴影扩散效果,这将改进在移动端上的显示效果
+08faddb|jjm2473|Tue Apr 18 11:23:33 2023 +0800|fix dropdown on uci dialog [22.03]
+befec95|jjm2473|Thu Apr 13 23:12:11 2023 +0800|fix dynlist item style [22.03]
+4a9d1c6|老竭力|Tue Apr 18 11:13:52 2023 +0800|Merge pull request #399 from SpeedPartner/18.06
+a8107d9|SpeedPartner|Mon Apr 17 23:04:16 2023 +0800|修复自v1.7.6开始,在[luci-app-alist]中点击[查看密码(View Password)]后,用户名和密码的布局异常 - 并修复在[luci-app-filebrowser]的移动端页面,运行状态位置不正确
+3293146|SpeedPartner|Mon Apr 17 04:40:18 2023 +0800|回退 合并来自master的 header_login.htm , out_header_login.htm - No zuo no die, why would I try...
+2089cfe|SpeedPartner|Mon Apr 17 04:01:13 2023 +0800|新增 在检测到移动端横屏时,自动隐藏footer 避免在移动端 横屏刷新时 或 从竖屏切换至横屏时,footer显示位置不会自动隐藏(主要在登录页面) - 清理不需要的代码
+1c7bba5|SpeedPartner|Mon Apr 17 03:01:34 2023 +0800|Update luasrc/view/themes/argon/footer.htm
+18ac0d8|SpeedPartner|Mon Apr 17 03:01:09 2023 +0800|Update luasrc/view/themes/argon/header.htm
+b41635b|SpeedPartner|Mon Apr 17 02:59:18 2023 +0800|Update htdocs/luci-static/argon/js/styles-argon.js
+e05e52a|SpeedPartner|Sun Apr 16 23:03:53 2023 +0800|回退footer.htm 修复在登录界面<缩小浏览器窗口>或者<移动端竖横屏切换>时,页脚[footer]显示位置不正确
+05be190|SpeedPartner|Sun Apr 16 19:06:49 2023 +0800|修复侧边导航菜单自动收缩(隐藏)时,且在防火墙[iptables]列表加载时,扩展按钮无响应的问题 - 从menu-argon.js分离侧边导航菜单的脚本至sidebar-argon.js - 导航菜单自动收缩(隐藏):移动端竖屏时/缩小浏览器窗口时
+187a7f6|SpeedPartner|Sun Apr 16 03:05:31 2023 +0800|优化对齐[luci-app-filebrowser]的运行状态文本 - 添加备注
+a7e51bd|SpeedPartner|Sat Apr 15 05:54:16 2023 +0800|重做<修复防火墙[iptables]列表加载时,导航菜单无响应的问题> 分离script.js为menu-argon.js和styles-argon.js,这也将改进一些基于script处理主题风格的效率, 如 软件包[Software] 中 空闲空间[Free space] 的占用指示条; 合并master的footer.htm,header_login.htm,out_header_login.htm; 修复资源版本号
+5bd4a5e|SpeedPartner|Fri Apr 14 21:53:02 2023 +0800|修复首次获取在线壁纸时需要再刷新一次才能显示的问题
+e825831|SpeedPartner|Fri Apr 14 21:49:28 2023 +0800|增加获取在线壁纸的最长响应等待时间至3s, 以避免网络环境不佳时无法获取壁纸url
+03c3972|SpeedPartner|Fri Apr 14 05:06:31 2023 +0800|Sync from master: Support wallpaper from Unsplash https://github.com/jerrykuku/luci-theme-argon/pull/395 - thanks to @MkQtS @jjm2473
+49e3b77|SpeedPartner|Wed Apr 12 16:50:08 2023 +0800|为警告背景色呼吸动画添加缺失的字体颜色
+3c74234|SpeedPartner|Tue Apr 11 20:35:21 2023 +0800|修复防火墙[iptables]列表加载时,导航菜单无响应的问题
+20fad04|SpeedPartner|Tue Apr 11 20:10:55 2023 +0800|补充适配 PassWall 在暗色模式下[使用(节点)]弹出小窗的背景颜色
+c6ed8da|老竭力|Wed Apr 5 16:02:56 2023 +0800|Merge pull request #391 from gngpp/patch-1
+eb150d9|gngpp|Tue Apr 4 19:48:25 2023 +0800|fix: 修复URL结尾子路径匹配bug
+b590a0f|老竭力|Tue Apr 4 18:49:54 2023 +0800|Update README_ZH.md
+1219943|老竭力|Tue Apr 4 18:49:17 2023 +0800|Update README.md
+16b37cc|老竭力|Tue Apr 4 18:04:23 2023 +0800|Update Makefile
+aa87a90|老竭力|Tue Apr 4 18:00:59 2023 +0800|Merge pull request #390 from SpeedPartner/18.06
+8b51554|SpeedPartner|Tue Apr 4 05:01:14 2023 +0800|Merge branch 'jerrykuku:18.06' into 18.06
+7c8e54b|老竭力|Mon Apr 3 22:15:20 2023 +0800|Fixed text-transform uppercase in th tag
+b7c683e|jjm2473|Thu Mar 30 23:35:45 2023 +0800|fix menu search on some old browsers
+272d1f3|jjm2473|Thu Mar 30 13:57:49 2023 +0800|fix menu search link click
+1019e49|jjm2473|Wed Mar 29 17:40:38 2023 +0800|fix cache menu-argon.js
+7c8ab57|jjm2473|Wed Mar 29 17:17:11 2023 +0800|udpate menu search
+56b29d4|jjm2473|Wed Mar 29 15:54:23 2023 +0800|add menu search
+abb77b5|jjm2473|Wed Mar 29 10:07:41 2023 +0800|rename variables
+9ae3b85|SpeedPartner|Tue Mar 28 04:58:44 2023 +0800|update 1.7.6
+cdd3257|SpeedPartner|Tue Mar 28 04:44:55 2023 +0800|更正说明: “正在使用中” 的节点背景颜色为PassWall专用,属于强迫症更改
+9ad8a3e|SpeedPartner|Tue Mar 28 03:44:25 2023 +0800|强迫症:暗色模式下,适配PassWall中通过链接添加节点弹出小窗的背景颜色
+1759fc6|SpeedPartner|Tue Mar 28 03:21:42 2023 +0800|优化暗色模式下,在 未保存的配置 中各条目的背景颜色
+9b70d09|SpeedPartner|Tue Mar 28 02:54:39 2023 +0800|优化暗色模式下,防火墙 > 通信规则 > 添加/修改 规则时,任意区域和设备选项的背景颜色
+796019b|SpeedPartner|Mon Mar 27 04:53:05 2023 +0800|为警告提示(譬如更改未保存时的设备重启页面)增加一个背景颜色呼吸显示的动画效果,并同步变换字体颜色,以提升醒目程度
+b4e8e9b|SpeedPartner|Mon Mar 27 03:18:45 2023 +0800|替换LuCI默认的文件和文件夹类型图标,这将在暗色模式下更美观
+002f480|SpeedPartner|Sun Mar 26 21:12:58 2023 +0800|改进暗色模式下载入过程gif的颜色
+0fda77b|SpeedPartner|Sun Mar 26 20:52:00 2023 +0800|优化在设备重启时提示信息的背景颜色
+15970f1|SpeedPartner|Sun Mar 26 20:04:18 2023 +0800|优化暗色模式下,各接口的创建/分配防火墙区域中的不指定和新建的背景颜色
+3b07975|SpeedPartner|Sun Mar 26 04:46:45 2023 +0800|居中显示错误提示文本,并追加边框和呼吸显示动画,以提升醒目程度
+fbf65da|SpeedPartner|Sat Mar 25 05:59:44 2023 +0800|为选择文件按钮添加与主题统一的悬停,移除和按下的动画效果
+3c15d2b|SpeedPartner|Fri Mar 24 05:33:04 2023 +0800|修复暗色模式主题下,在 网络(network) > 无线(wireless) 中的信号强度标志的背景颜色未适配
+f683f02|SpeedPartner|Fri Mar 24 04:59:30 2023 +0800|为“正在使用中”的项目添加(替换)背景颜色,深色模式主题下也不会亮瞎眼睛了
+f2dc786|SpeedPartner|Fri Mar 24 04:25:31 2023 +0800|优化表格样式,为表格标题和描述补上背景颜色 / 优化H标签在表格内的背景颜色 / 优化(变更)表格内的H标签颜色使之更清晰易见 (以上均已适配暗色模式主题) PS:相关改进可在如PassWall的LuCI App > 规则管理 > V2ray/Xray 分流规则 进行查看
+0195be8|SpeedPartner|Fri Mar 24 00:25:29 2023 +0800|优化暗色模式主题下的列表颜色,添加/修复遗漏的列表排序按钮背景颜色
+105a4f9|SpeedPartner|Thu Mar 23 23:32:53 2023 +0800|优化对齐管控[Control]菜单下的各类LuCi Apps的运行状态文本
+fdca670|SpeedPartner|Thu Mar 23 23:10:39 2023 +0800|修复暗色模式主题下 接口 > 接口总览 中网络类型的ifacebox边框底部两角存在留白
+4eea922|SpeedPartner|Thu Mar 23 05:33:44 2023 +0800|修正/统一格式
+de3ab8c|SpeedPartner|Thu Mar 23 05:30:14 2023 +0800|使用伪元素替换用于上传文件的选择文件按钮
+1c1b742|SpeedPartner|Thu Mar 23 05:03:24 2023 +0800|修正/统一格式
+fc231ee|SpeedPartner|Thu Mar 23 04:48:15 2023 +0800|添加/修复 文本框内容输入(提交)错误时,无法定位错误点位
+dd07324|老竭力|Wed Mar 22 21:23:16 2023 +0800|Merge pull request #385 from SpeedPartner/18.06
+03d117e|SpeedPartner|Wed Mar 22 05:50:37 2023 +0800|Merge branch 'jerrykuku:18.06' into 18.06
+6354e6f|SpeedPartner|Wed Mar 22 04:00:28 2023 +0800|update 1.7.5
+2d1db2c|SpeedPartner|Wed Mar 22 03:40:59 2023 +0800|重做:修复首页DHCPv6分配中的某些主机名无法居中显示
+684b832|SpeedPartner|Tue Mar 21 23:43:53 2023 +0800|修复首页DHCPv6分配中的某些主机名无法居中显示
+176c6ca|SpeedPartner|Tue Mar 21 19:54:47 2023 +0800|修复某些输入框过小(移动端比较常见)
+a17b2cb|SpeedPartner|Tue Mar 21 17:42:15 2023 +0800|Update sysauth.htm
+5d8cb5b|老竭力|Tue Mar 21 08:58:08 2023 +0800|Merge pull request #384 from SpeedPartner/18.06
+d5928cf|SpeedPartner|Tue Mar 21 02:40:35 2023 +0800|update 1.7.4
+a155a83|SpeedPartner|Tue Mar 21 02:34:54 2023 +0800|修改必应壁纸更新逻辑，防止wget卡死导致登录界面加载失败，新的逻辑使用curl，并且加锁，就算卡死以后再次刷新界面会跳过必应壁纸的流程 from:https://github.com/jerrykuku/luci-theme-argon/pull/310
+b935771|SpeedPartner|Tue Mar 21 02:14:29 2023 +0800|Fix typo / Fix menu fold (revert) / Fix <legend> display issue: Interface - LAN - Common Configuration & DHCP Server
+77d9a57|SpeedPartner|Tue Mar 21 01:27:35 2023 +0800|fix typo
+6e291ea|jjm2473|Sun Feb 19 11:33:46 2023 +0800|add LUCI_MINIFY_CSS:=0 to bypass csstidy bug
+b189bb5|老竭力|Fri Nov 25 17:24:49 2022 +0800|Fixed can't show sysauth page.
+edd39f2|jjm2473|Tue Jan 31 22:16:02 2023 +0800|fix potential number overflow
+08bc268|jjm2473|Mon Dec 12 21:14:25 2022 +0800|align DynamicList to other inputs
+ae3035b|jjm2473|Wed Sep 28 21:57:53 2022 +0800|fix password input in table
+cc44ce4|jjm2473|Mon Sep 19 19:22:55 2022 +0800|fix dropdown text input issue in safari
+bd0aa97|老竭力|Mon Sep 19 10:57:22 2022 +0800|Merge pull request #346 from jjm2473/disable-auto-https
+07b09bc|老竭力|Mon Sep 19 10:56:48 2022 +0800|Merge pull request #347 from jjm2473/button-style
+6da7f73|jjm2473|Thu Aug 11 15:03:06 2022 +0800|remove invalid button style
+2c643cb|jjm2473|Wed May 4 16:53:21 2022 +0800|disable auto redirect to https
+c61f539|jjm2473|Mon Apr 25 22:39:51 2022 +0800|remove invalid code from login page
+3255cb8|老竭力|Wed Aug 10 14:52:22 2022 +0800|Merge pull request #345 from NemoAlex/master
+095b087|Nemo|Mon Aug 8 20:08:46 2022 +0800|Adjust clickable area of slide-menu
+b5cc4b6|老竭力|Fri Jun 3 08:46:53 2022 +0800|Merge pull request #337 from McGiverGim/adjust_ifacebadge_height
+38182be|Miguel Angel Mulero Martinez|Tue May 24 12:46:43 2022 +0200|Adjust ifacebadge height
+515eb2a|老竭力|Fri May 20 10:40:34 2022 +0800|Merge pull request #332 from McGiverGim/apply_changes_scroll
+7ed2bb5|老竭力|Fri May 20 10:40:06 2022 +0800|Merge pull request #329 from xiaozhuai/master
+c243201|Miguel Angel Mulero Martinez|Wed May 18 16:39:23 2022 +0200|Adds a scroll in the changes window if needed
+1928af6|xiaozhuai, Weihang Ding|Mon May 16 15:16:52 2022 +0800|Fix cbi-value-field
+45336e3|xiaozhuai, Weihang Ding|Mon May 16 13:44:12 2022 +0800|Fix control-group and cbi-value-field css
+a22ce49|老竭力|Wed May 11 09:35:17 2022 +0800|Merge pull request #325 from McGiverGim/ifacebadge_ellipsis
+d4fe7fa|Miguel Angel Mulero Martinez|Tue May 10 13:54:03 2022 +0200|Overflow ellipsis in text on ifacebadge
+60df276|老竭力|Fri May 6 18:43:32 2022 +0800|Merge pull request #323 from McGiverGim/break_line_menu
+2c7d1c1|老竭力|Fri May 6 18:43:25 2022 +0800|Merge branch 'master' into break_line_menu
+91d5e40|老竭力|Fri May 6 18:42:19 2022 +0800|Merge pull request #322 from McGiverGim/adjust_text_progressbar
+71a80eb|老竭力|Fri May 6 18:42:12 2022 +0800|Merge branch 'master' into adjust_text_progressbar
+f57014d|老竭力|Fri May 6 18:40:43 2022 +0800|Merge pull request #321 from McGiverGim/make_controlgroup_flex
+bdf52b9|老竭力|Fri May 6 18:40:35 2022 +0800|Merge branch 'master' into make_controlgroup_flex
+36ba587|老竭力|Fri May 6 18:14:00 2022 +0800|Merge pull request #324 from McGiverGim/ifacebadge_gap
+98756c2|Miguel Angel Mulero Martinez|Fri May 6 08:57:16 2022 +0200|Add gap to ifacebadge and ifacebox
+1d04cfa|Miguel Angel Mulero Martinez|Thu May 5 20:06:02 2022 +0200|Make the menu break line if needed
+eae26c6|Miguel Angel Mulero Martinez|Thu May 5 19:54:15 2022 +0200|Adjust text inside progressbar in small screens
+967a2ee|Miguel Angel Mulero Martinez|Thu May 5 09:44:10 2022 +0200|Make control-group flex
+e372243|老竭力|Wed May 4 21:45:28 2022 +0800|Merge pull request #320 from McGiverGim/fix_pollstatus_color
+016d31c|老竭力|Wed May 4 21:44:56 2022 +0800|Merge pull request #319 from jjm2473/bg-ignore-case
+d5bd093|老竭力|Wed May 4 21:44:37 2022 +0800|Merge pull request #318 from jjm2473/fix-bing-first
+6417d82|Miguel Angel Mulero Martinez|Wed May 4 12:41:49 2022 +0200|Make poll-status visible
+5a5e683|jjm2473|Wed May 4 17:52:00 2022 +0800|background ext ignore case
+bb1ae94|jjm2473|Wed May 4 17:35:33 2022 +0800|make bing_background works
+f6a8e41|老竭力|Mon Apr 25 21:57:24 2022 +0800|Merge pull request #314 from Beginner-Go/tidy
+b1144bf|Beginner-Go|Mon Apr 25 10:38:49 2022 +0000|code alignment
+385cd0e|老竭力|Sun Apr 24 18:02:50 2022 +0800|Merge pull request #310 from jjm2473/luci-21
+54a244a|老竭力|Sun Apr 24 00:23:58 2022 +0800|Update script.js
+ee851ce|老竭力|Sat Apr 23 19:01:16 2022 +0800|Update header.htm
+7dacb6e|老竭力|Fri Apr 22 18:46:31 2022 +0800|Update README.md
+0b05c6f|老竭力|Thu Apr 21 18:03:42 2022 +0800|Update README_ZH.md
+5352e98|老竭力|Thu Apr 21 18:03:16 2022 +0800|Update README.md
+d6715cd|老竭力|Thu Apr 21 18:01:36 2022 +0800|Update header.htm
+ed74e9c|jjm2473|Thu Apr 21 15:46:38 2022 +0800|remove invalid code from login page
+057eeaa|老竭力|Thu Apr 21 13:08:58 2022 +0800|bump to  1.7.3
+2d0c821|老竭力|Thu Apr 21 13:07:50 2022 +0800|bump to 1.7.3
+c429ae5|老竭力|Thu Apr 21 13:05:17 2022 +0800|Update Makefile
+57b673a|老竭力|Thu Apr 21 13:04:21 2022 +0800|Update sysauth.htm
+ac8acb9|jjm2473|Thu Apr 14 11:50:25 2022 +0800|bing wallpaper update with lock
+ae014f0|jjm2473|Tue Apr 12 14:51:20 2022 +0800|update bing wallpaper update logic
+3aec446|jjm2473|Tue Apr 12 12:08:30 2022 +0800|fix version
+530761f|jjm2473|Mon Apr 11 23:14:01 2022 +0800|use curl for timeout handle
+d665ab8|练亮斌|Sat Apr 2 15:53:39 2022 +0800|update version
+18d2c87|jjm2473|Mon Mar 28 18:29:14 2022 +0800|fix resources version
+f6a373f|jjm2473|Sat Mar 26 15:56:03 2022 +0800|support collapse menu
+c209f9e|jjm2473|Sat Mar 26 15:19:06 2022 +0800|login page support webm background
+200bec7|jjm2473|Sat Mar 26 15:18:01 2022 +0800|fix table in luci 21
+46906ac|老竭力|Sat Jan 8 14:20:08 2022 +0800|Update footer_login.htm
+57fd232|老竭力|Sat Jan 8 09:56:17 2022 +0800|Merge pull request #278 from izstas/bugfix/footer-mobile-hide
+81376e7|Stanislav Izmalkov|Fri Jan 7 18:19:36 2022 +0300|Fix login page footer not being hidden on mobile devices
+011de48|老竭力|Wed Oct 27 16:57:53 2021 +0800|🐞 fix: 修正列表显示
+8827812|老竭力|Sat Oct 16 20:01:12 2021 +0800|Update menu-argon.js
+65c4e55|老竭力|Sat Oct 16 19:51:22 2021 +0800|fix display error
+a6908b4|老竭力|Sat Oct 16 19:12:22 2021 +0800|Merge branch 'master' of https://github.com/jerrykuku/luci-theme-argon
+ce157fe|老竭力|Sat Oct 16 19:12:19 2021 +0800|Add a sliding effect to the navigation menu
+c84a415|老竭力|Sat Oct 16 17:52:44 2021 +0800|Update README_ZH.md
+1643f6e|老竭力|Sat Oct 16 17:52:26 2021 +0800|Update README.md
+7d32c47|老竭力|Sat Oct 16 16:59:58 2021 +0800|Merge branch 'master' of https://github.com/jerrykuku/luci-theme-argon
+07d170c|老竭力|Sat Oct 16 16:59:45 2021 +0800|Update README.md
+0fdf39d|老竭力|Sat Oct 16 16:58:44 2021 +0800|Create LICENSE
+14d83b1|老竭力|Sat Oct 16 16:57:49 2021 +0800|Bump to v2.2.9
+d9ba4c3|老竭力|Mon Oct 11 22:48:35 2021 +0800|bump to v2.2.8
+3b15d06|老竭力|Fri Oct 8 15:23:13 2021 +0800|Create LICENSE
+f88b859|老竭力|Fri Oct 8 13:04:38 2021 +0800|Update README.md
+0329985|老竭力|Fri Oct 8 13:02:30 2021 +0800|Update README.md
+edec738|老竭力|Fri Oct 8 12:58:30 2021 +0800|Update README.md
+8fda1c2|老竭力|Sun Jul 4 16:42:12 2021 +0800|Merge pull request #237 from mochaaP/patch-1
+af0291a|mochaaP|Sun Jul 4 14:07:43 2021 +0800|fix: background for `.alert-message` (#222)
+f342530|老竭力|Tue Jun 22 08:56:24 2021 +0800|Merge pull request #225 from msylgj/patch-1
+016464e|msylgj|Fri Jun 18 02:44:53 2021 +0800|Update dark.css
+e59c184|老竭力|Mon Jun 14 13:47:16 2021 +0800|Merge pull request #218 from hue715/patch1
+1cd8acb|hue715|Mon Jun 14 13:32:28 2021 +0800|luci-theme-argon: Remove renderModeMenu function
+6f5ac34|hue715|Mon Jun 14 12:48:55 2021 +0800|luci-theme-argon: Fix bug that active menu style does not change
+0d9b012|hue715|Sun Jun 13 20:22:08 2021 +0800|Fix no sidebar error in mobile page mode
+3773750|老竭力|Thu May 27 21:01:05 2021 +0800|Merge pull request #216 from uamrws/master
+1adbe73|uamrws|Thu May 27 18:06:28 2021 +0800|增加 crossorigin="use-credentials"参数
+7537b50|uamrws|Thu May 27 18:05:14 2021 +0800|增加 crossorigin="use-credentials"参数
+db44416|uamrws|Thu May 27 14:09:45 2021 +0800|Update arrow.svg
+d1874bc|老竭力|Wed Apr 21 16:01:55 2021 +0800|Merge pull request #208 from JSZMonkey/patch-2
+b156605|JSZMonkey|Mon Apr 19 17:29:21 2021 +0800|Update cascade.css
+708f29f|老竭力|Mon Apr 19 17:02:17 2021 +0800|Merge pull request #207 from JSZMonkey/patch-1
+aed2792|JSZMonkey|Mon Apr 19 17:00:53 2021 +0800|解决插件 两边信息不对齐，input checkbox 不对齐的问题
+a3bdbbf|老竭力|Thu Mar 25 13:43:46 2021 +0800|Update issue templates
+d610788|老竭力|Fri Mar 19 10:09:05 2021 +0800|Merge pull request #198 from liudonghua/master
+b6cd7f9|liudonghua|Fri Mar 19 09:21:30 2021 +0800|modify cascade.less
+d0a4c41|老竭力|Thu Mar 18 17:38:27 2021 +0800|Merge pull request #197 from liudonghua/trunk
+a3fc3f0|liudonghua|Thu Mar 18 17:28:39 2021 +0800|fix expend menu error
+fe21ea7|liudonghua|Thu Mar 18 16:23:38 2021 +0800|adapter for LUCI js api in trunk version
+cb52e4d|jerrykuku|Mon Mar 15 19:26:41 2021 +0800|Update sysauth.htm
+41a458f|jerrykuku|Wed Mar 10 00:01:32 2021 +0800|Update sysauth.htm
+0c7260d|jerrykuku|Tue Mar 9 22:58:00 2021 +0800|Update sysauth.htm
+6e50192|jerrykuku|Tue Mar 9 14:34:46 2021 +0800|fix readme text
+eafb62d|jerrykuku|Tue Mar 9 14:22:06 2021 +0800|Bug修复
+e8c3cb7|老竭力|Fri Feb 19 01:00:44 2021 +0800|Update README.md
+2e52859|jerrykuku|Mon Feb 15 23:38:03 2021 +0800|fix some error
+0116b6e|jerrykuku|Mon Feb 15 22:51:42 2021 +0800|fix wrong date
+85bacae|jerrykuku|Mon Feb 15 22:45:28 2021 +0800|update 1.7.1
+701b879|老竭力|Fri Feb 5 16:11:22 2021 +0800|Update README.md
+c61385a|老竭力|Thu Jan 21 21:17:31 2021 +0800|Merge pull request #167 from cartender/pr/brand_name_var
+dcc62fa|老竭力|Thu Jan 21 21:14:38 2021 +0800|Merge pull request #166 from cartender/pr/whitespace_cleanup
+a9664a6|Giovanni Giacobbi|Thu Jan 21 11:47:33 2021 +0100|Introduce variable 'brand_name' to avoid code repeatition
+e375233|Giovanni Giacobbi|Thu Jan 21 13:39:56 2021 +0100|Make files headers, indentation and conding style consistent
+9fdcfc8|Giovanni Giacobbi|Thu Jan 21 13:34:34 2021 +0100|Clean up trailing whitespace and ensure newline at end of file
+c0f98ac|老竭力|Thu Jan 21 18:38:53 2021 +0800|Merge pull request #165 from cartender/pr/remove_tm
+40954b5|Giovanni Giacobbi|Thu Jan 21 11:35:51 2021 +0100|Removed bogus "TM" from the header logo in mobile version
+e99f9a1|老竭力|Thu Jan 21 18:17:33 2021 +0800|Merge pull request #164 from cartender/pr/remove_header_hacks
+d382835|老竭力|Thu Jan 21 18:13:55 2021 +0800|Merge pull request #163 from cartender/pr/fix_data_indicator
+147b362|Giovanni Giacobbi|Thu Jan 21 09:10:49 2021 +0100|Removed install scripts hacks as they are no longer needed
+53c89d8|Giovanni Giacobbi|Thu Jan 21 11:06:20 2021 +0100|Fix data indicator formatting to cover also "unsaved changes" indicator
+8d0bd0b|jerrykuku|Wed Jan 20 09:46:59 2021 +0800|update
+a11c0ad|老竭力|Tue Dec 8 15:20:03 2020 +0800|Update README.md
+df90457|老竭力|Sun Dec 6 15:11:48 2020 +0800|Update README.md
+a804c98|老竭力|Sat Sep 19 12:37:03 2020 +0800|Merge pull request #140 from nuintun/patch-1
+e52be76|nuintun|Sat Sep 19 12:34:59 2020 +0800|修复错误的引号
+d71e027|jerrykuku|Mon Sep 14 23:36:39 2020 +0800|fix menu font size
+2b5079c|jerrykuku|Mon Sep 14 11:48:47 2020 +0800|fix bug
+f65f9e3|jerrykuku|Sun Sep 13 22:08:31 2020 +0800|v2.2.5
+6ddbb18|jerrykuku|Wed Sep 9 22:00:28 2020 +0800|fix theme does not follow system color
+9556ddc|jerrykuku|Wed Sep 9 09:21:54 2020 +0800|fix mobile title bar color
+f192810|jerrykuku|Tue Sep 8 22:20:39 2020 +0800|Update README.md
+a887ac1|jerrykuku|Tue Sep 8 22:04:02 2020 +0800|Update README_ZH.md
+dd7a4af|jerrykuku|Tue Sep 8 21:07:31 2020 +0800|v1.7.0
+3d1e694|老竭力|Mon Sep 7 22:26:23 2020 +0800|Merge pull request #127 from jerrykuku/revert-124-master
+6f9bbce|老竭力|Mon Sep 7 22:26:04 2020 +0800|Merge pull request #126 from jerrykuku/revert-123-18.06
+ced6223|老竭力|Mon Sep 7 22:18:57 2020 +0800|Revert "Set the theme as the default theme(branch: master)"
+afad077|老竭力|Mon Sep 7 22:18:15 2020 +0800|Revert "Set the theme as the default theme(branch: 18.06)"
+7ba2006|老竭力|Mon Sep 7 18:16:44 2020 +0800|Merge pull request #124 from R3pl4c3r/master
+26ea9a9|老竭力|Mon Sep 7 18:16:32 2020 +0800|Merge pull request #123 from R3pl4c3r/18.06
+32d3b3e|R3pl4c3r|Mon Sep 7 00:54:35 2020 -0700|Set the theme as the default theme
+ceebcad|R3pl4c3r|Mon Sep 7 00:52:33 2020 -0700|Set the theme as the default theme
+893063b|jerrykuku|Fri Aug 21 18:58:23 2020 +0800|Update Makefile
+afbebe8|jerrykuku|Fri Aug 21 13:15:49 2020 +0800|readme
+a2aa2e0|jerrykuku|Fri Aug 21 13:15:16 2020 +0800|v2.2.4
+4d11fa4|jerrykuku|Fri Aug 21 12:51:51 2020 +0800|v1.6.9
+8f274b2|jerrykuku|Thu Aug 20 17:16:44 2020 +0800|update screenshots
+0b2767d|jerrykuku|Thu Aug 20 17:14:09 2020 +0800|Merge branch 'master' of https://github.com/jerrykuku/luci-theme-argon
+45f6c2c|jerrykuku|Thu Aug 20 17:13:09 2020 +0800|update readme
+5b9aa1f|老竭力|Thu Aug 20 17:11:48 2020 +0800|Delete scree
+f3fee72|老竭力|Thu Aug 20 17:11:27 2020 +0800|Add files via upload
+7bf753b|老竭力|Thu Aug 20 17:11:07 2020 +0800|Create scree
+0dc9c62|jerrykuku|Thu Aug 20 17:09:46 2020 +0800|replace screenshots
+f52d48b|jerrykuku|Thu Aug 20 13:46:57 2020 +0800|readme
+b8fd051|jerrykuku|Thu Aug 20 13:24:20 2020 +0800|v1.6.8
+c069263|jerrykuku|Thu Aug 20 13:07:10 2020 +0800|update readme
+504b43e|jerrykuku|Thu Aug 20 13:04:20 2020 +0800|v2.2.3
+47cf401|jerrykuku|Tue Aug 18 18:03:19 2020 +0800|fix select backgorund color of dark mode
+77c9ae4|jerrykuku|Tue Aug 18 18:01:59 2020 +0800|fix dark select background color
+808157a|jerrykuku|Tue Aug 18 00:22:46 2020 +0800|fix some error
+0769b35|jerrykuku|Tue Aug 18 00:21:32 2020 +0800|Update sysauth.htm
+f40309d|jerrykuku|Sun Aug 16 20:32:24 2020 +0800|Update README_ZH.md
+6854460|jerrykuku|Sun Aug 16 20:30:32 2020 +0800|readme
+6105120|jerrykuku|Sun Aug 16 20:12:41 2020 +0800|update to v2.2.2
+ee716e7|jerrykuku|Sun Aug 16 11:31:58 2020 +0800|Update sysauth.htm
+b98076a|jerrykuku|Sun Aug 16 11:02:17 2020 +0800|change css
+9033781|jerrykuku|Sun Aug 16 10:51:14 2020 +0800|change menubar expand speed
+a40fb09|jerrykuku|Sun Aug 16 01:36:54 2020 +0800|fix bing api
+2b4f605|jerrykuku|Sat Aug 15 23:12:57 2020 +0800|add video sound
+1d0c40c|jerrykuku|Fri Jul 31 14:00:39 2020 +0800|fix footer error
+de2a817|jerrykuku|Mon Jul 27 22:53:53 2020 +0800|Update footer.htm
+5632533|jerrykuku|Mon Jul 27 21:44:54 2020 +0800|Add new features
+90062c3|jerrykuku|Sun Jul 26 17:51:18 2020 +0800|Update footer.htm
+0282293|jerrykuku|Sat Jul 25 23:44:35 2020 +0800|v2.2.1
+0b0f3a3|jerrykuku|Sat Jul 25 23:34:28 2020 +0800|Update Makefile
+bd947db|jerrykuku|Sat Jul 25 23:32:02 2020 +0800|v1.6.3
+d577f2b|jerrykuku|Sat Jul 25 15:58:59 2020 +0800|fix
+2929078|jerrykuku|Sat Jul 25 15:57:06 2020 +0800|fix
+124b8bf|jerrykuku|Sat Jul 25 15:21:33 2020 +0800|bump version to v2.2
+ace6365|jerrykuku|Sat Jul 25 15:05:43 2020 +0800|bump version to 1.6.2
+a24dac7|老竭力|Fri Jul 24 15:23:36 2020 +0800|Update README_ZH.md
+0458f33|老竭力|Fri Jul 24 15:22:56 2020 +0800|Update README.md
+7943758|老竭力|Fri Jul 24 15:06:31 2020 +0800|Update README_ZH.md
+a244fc6|老竭力|Fri Jul 24 15:06:14 2020 +0800|Update README.md
+073e5a7|jerrykuku|Fri Jul 24 15:03:29 2020 +0800|screenshots
+27297ff|jerrykuku|Fri Jul 24 14:42:06 2020 +0800|fix bing image api
+2b420a0|jerrykuku|Fri Jul 24 14:21:18 2020 +0800|login input border-radius
+f18ff91|jerrykuku|Fri Jul 24 14:14:35 2020 +0800|fix header background-color of  dark theme
+aabe14e|jerrykuku|Fri Jul 24 13:45:14 2020 +0800|bump to 1.6.1
+b77f7f5|jerrykuku|Fri Jul 17 19:04:52 2020 +0800|Create .gitignore
+47ee463|jerrykuku|Fri Jul 17 18:54:44 2020 +0800|resize icon
+98c1941|jerrykuku|Fri Jul 17 18:51:35 2020 +0800|update icon fonts
+3a9d358|jerrykuku|Fri Jul 17 18:42:35 2020 +0800|version bump to 1.5.4
+fd0bc4f|jerrykuku|Fri Jul 17 18:40:54 2020 +0800|Add a Control icon
+487e34a|jerrykuku|Sun Jul 12 11:14:26 2020 +0800|add docker menu icon
+d572bb9|老竭力|Sun Jul 5 11:28:34 2020 +0800|Merge pull request #83 from kongfl888/abbr
+b370f35|kongfl888|Sat Jul 4 21:17:37 2020 +0800|Special style for map-descr abbr
+d4b2541|jerrykuku|Fri Jul 3 19:16:28 2020 +0800|Update style.css
+404fa1d|老竭力|Fri Jul 3 17:44:19 2020 +0800|Merge pull request #82 from kongfl888/abbr
+0dc6902|kongfl888|Fri Jul 3 17:17:17 2020 +0800|fix abbr text invisible
+4969869|老竭力|Fri Jul 3 16:39:35 2020 +0800|Update README_ZH.md
+3260366|老竭力|Fri Jul 3 16:38:59 2020 +0800|Update README.md
+b9a2dde|jerrykuku|Fri Jul 3 16:19:13 2020 +0800|update readme
+86f9b0a|jerrykuku|Fri Jul 3 16:12:34 2020 +0800|fix display bugs
+a603fac|老竭力|Wed Jun 17 09:23:03 2020 +0800|Update README.md
+40cac6e|老竭力|Sat Jun 13 21:37:15 2020 +0800|Update README.md
+0373a69|老竭力|Wed Jun 3 12:05:10 2020 +0800|Merge pull request #73 from QiuSimons/master
+fb61172|QiuSimons|Wed Jun 3 11:53:58 2020 +0800|Add missing icon
+6bab4a8|jerrykuku|Mon May 4 14:51:58 2020 +0800|fix some display error
+358e293|老竭力|Sun May 3 12:16:04 2020 +0800|Merge pull request #65 from R3pl4c3r/patch-2
+b3847e9|老竭力|Sun May 3 12:15:55 2020 +0800|Merge pull request #66 from R3pl4c3r/patch-1
+621d5cf|R3pl4c3r|Sat May 2 19:19:18 2020 +0800|favicon: replaced by icon.png
+263d468|R3pl4c3r|Sat May 2 19:13:21 2020 +0800|favicon: replaced by icon.png
+5f9192a|老竭力|Tue Apr 28 20:10:49 2020 +0800|Merge pull request #58 from doushang/master
+a052562|doushang|Tue Apr 28 18:39:29 2020 +0800|Restore previous files
+b19d1a5|doushang|Tue Apr 28 12:49:19 2020 +0800|fix error
+d3e563d|sudodou|Mon Apr 27 11:46:52 2020 +0800|Merge pull request #1 from jerrykuku/master
+3e41f5b|jerrykuku|Wed Apr 1 09:51:59 2020 +0800|fix display error
+e260b44|老竭力|Wed Apr 1 00:22:49 2020 +0800|Update README_ZH.md
+ecd9b59|老竭力|Wed Apr 1 00:22:31 2020 +0800|Update README.md
+c37f44b|jerrykuku|Wed Apr 1 00:20:29 2020 +0800|Update README_ZH.md
+f4f88cb|jerrykuku|Tue Mar 31 23:54:33 2020 +0800|fix side scroll bar color
+ea29300|jerrykuku|Tue Mar 31 23:43:17 2020 +0800|Add dark mode
+03697cf|jerrykuku|Sat Mar 21 19:42:07 2020 +0800|bump to 1.5
+6eb9ff1|jerrykuku|Sat Mar 21 19:41:19 2020 +0800|rebuild fonts and fix margin  padding
+cab3f88|老竭力|Thu Mar 12 22:29:59 2020 +0800|Merge pull request #36 from doushang/work18.06
+418f33b|老竭力|Thu Mar 12 22:29:47 2020 +0800|Merge pull request #37 from doushang/work
+f478383|doushang|Wed Mar 11 16:28:13 2020 +0000|fix error of docker's icon
+1e7da35|doushang|Wed Mar 11 16:06:01 2020 +0000|fix case errors of docker
+afb6e20|老竭力|Wed Mar 11 21:27:21 2020 +0800|Merge pull request #35 from doushang/work
+d915463|doushang|Wed Mar 11 13:21:08 2020 +0000|update the css.map file
+f82f19f|老竭力|Tue Mar 10 22:38:09 2020 +0800|Merge pull request #34 from doushang/work18.06
+7f62080|doushang|Tue Mar 10 14:22:12 2020 +0000|add the new icon of docker
+dc9cb50|老竭力|Mon Mar 9 23:41:21 2020 +0800|Merge pull request #32 from doushang/work
+7ca7774|doushang|Mon Mar 9 12:50:48 2020 +0000|enable the new icon of docker
+6fd701e|doushang|Mon Mar 9 12:28:52 2020 +0000|add new icon
+826dd75|老竭力|Wed Feb 26 12:29:38 2020 +0800|Update README_ZH.md
+1824640|老竭力|Wed Feb 26 12:29:02 2020 +0800|Update README.md
+cc76c0a|老竭力|Wed Feb 26 12:28:29 2020 +0800|Update README.md
+03dc444|老竭力|Sun Feb 9 22:36:38 2020 +0800|Merge pull request #24 from QiuSimons/master
+9e4a1ca|QiuSimons|Sun Feb 9 22:32:31 2020 +0800|Update header.htm
+554dbaa|QiuSimons|Sun Feb 9 22:31:55 2020 +0800|Update footer.htm
+84636ae|老竭力|Sun Feb 9 22:19:59 2020 +0800|Update README_ZH.md
+9638d28|老竭力|Sun Feb 9 22:19:40 2020 +0800|Update README.md
+9e066d5|老竭力|Thu Feb 6 17:51:35 2020 +0800|Update README_ZH.md
+26452cc|老竭力|Thu Feb 6 17:51:02 2020 +0800|Update README.md
+70e1444|jerryk|Thu Feb 6 17:39:08 2020 +0800|Update README_ZH.md
+93d3e3c|jerryk|Thu Feb 6 17:37:37 2020 +0800|Update README.md
+36d4362|jerryk|Thu Feb 6 17:17:16 2020 +0800|Update README.md
+b6e040d|jerryk|Thu Feb 6 17:16:49 2020 +0800|Update README_ZH.md
+4fee4d8|jerryk|Thu Feb 6 17:10:33 2020 +0800|Update README.md
+c4b73bd|jerryk|Thu Feb 6 17:10:01 2020 +0800|Update README.md
+d7cdcb2|jerrykuku|Thu Feb 6 16:54:52 2020 +0800|Adapt to official  mainline  snapshot
+854e429|jerrykuku|Thu Feb 6 16:34:42 2020 +0800|fix nopassord warning display
+3fa9162|jerrykuku|Mon Feb 3 17:59:04 2020 +0800|添加中文说明
+e84298a|jerryk|Mon Feb 3 17:47:39 2020 +0800|Update README.md
+d4c3751|jerrykuku|Mon Feb 3 11:52:51 2020 +0800|fix bug
+12bae1d|jerrykuku|Fri Jan 31 20:47:54 2020 +0800|Bump version to 2.0
+523f886|jerrykuku|Fri Jan 31 20:45:58 2020 +0800|New Code For OpenWRT 19.07 for test.
+</details>

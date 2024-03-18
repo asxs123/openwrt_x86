@@ -21,7 +21,7 @@ on:
   #   - cron: 0 */8 * * *
 
 env:
-  REPO_URL: https://github.com/istoreos/istoreos
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: istoreos-22.03
   FEEDS_CONF: iStoreOS/feeds_config/feeds.conf
   CONFIGS: iStoreOS/istore_config/x86.config

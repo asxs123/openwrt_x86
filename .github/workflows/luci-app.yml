@@ -68,24 +68,23 @@ jobs:
           sudo -E apt-get -qq clean
           sudo timedatectl set-timezone "$TZ"
           df -hT
-  
-      - name: Initialization Directory
-        working-directory: /workdir
-        id: init_directory
-        run: |
-          sudo mkdir -p openwrt
-          sudo mkdir -p download
-          sudo chown $USER:$GROUPS /workdir/openwrt
-          sudo chown $USER:$GROUPS /workdir/download
-
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-          ln -sf /workdir/download $GITHUB_WORKSPACE/download
       
       - name: Clone Source Code
         working-directory: /workdir
         run: |
           git clone $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+      - name: Initialization Directory
+        working-directory: /workdir
+        id: init_directory
+        run: |
+          sudo mkdir -p download
+          sudo chown $USER:$GROUPS /workdir/openwrt
+          sudo chown $USER:$GROUPS /workdir/download
+
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ln -sf /workdir/download $GITHUB_WORKSPACE/download
 
       - name: Load Custom Feeds
         run: |

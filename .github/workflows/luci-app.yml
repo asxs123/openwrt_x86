@@ -1,0 +1,198 @@
+name: luci-app-buid
+
+on:
+  repository_dispatch:
+    types: [openwrt_source_update]
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+      is_display_detailed:
+        description: 'Whether to display detailed information about compilation'
+        required: false
+        default: 'false'
+      is_single_threaded:
+        description: 'Whether single-threaded compilation'
+        required: false
+        default: 'false'
+  # schedule:
+  #   - cron: 0 */8 * * *
+
+env:
+  REPO_URL: https://github.com/istoreos/istoreos
+  REPO_BRANCH: istoreos-22.03
+  FEEDS_CONF: iStoreOS/feeds_config/feeds.conf
+  CONFIGS: iStoreOS/istore_config/x86.config
+  DIY_P1_SH: iStoreOS/diy/diy-part1.sh
+  DIY_P2_SH: iStoreOS/diy/diy-part2.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_ARTIFACT: false
+  UPLOAD_RELEASE: true
+  TZ: Asia/Shanghai
+
+jobs:
+  job_init: 
+    runs-on: ubuntu-latest
+    name: Build-Init
+    outputs:
+      output_release_tag: ${{ steps.gen_release_tag.outputs.release_tag }}
+      output_sha: ${{steps.commit.outputs.commit_hash }}
+    steps:
+      - name: Generate Tag Name
+        id: gen_release_tag
+        run: |
+          echo "release_tag=luci-app_$(date +"%Y.%m.%d_%H.%M.%S")" >> $GITHUB_OUTPUT
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+          cd /workdir
+          sudo mkdir -p output
+          sudo chown $USER:$GROUPS /workdir/output
+          ln -sf /workdir/output $GITHUB_WORKSPACE/output
+
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Install Packages
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo -E apt-get -qq update
+          sudo -E apt-get -qq install $(curl -fsSL https://github.com/smallprogram/OpenWrtAction/raw/main/diy_script/depends)
+          sudo -E apt-get -qq autoremove --purge
+          sudo -E apt-get -qq clean
+          sudo timedatectl set-timezone "$TZ"
+          df -hT
+  
+      - name: Initialization Directory
+        working-directory: /workdir
+        id: init_directory
+        run: |
+          sudo mkdir -p openwrt
+          sudo mkdir -p download
+          sudo chown $USER:$GROUPS /workdir/openwrt
+          sudo chown $USER:$GROUPS /workdir/download
+
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ln -sf /workdir/download $GITHUB_WORKSPACE/download
+      
+      - name: Clone Source Code
+        working-directory: /workdir
+        run: |
+          git clone $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+      - name: Load Custom Feeds
+        run: |
+          [ -e $FEEDS_CONF ] && cp -r $FEEDS_CONF openwrt/feeds.conf.default
+          chmod +x $DIY_P1_SH
+          cd openwrt
+          $GITHUB_WORKSPACE/$DIY_P1_SH
+
+      - name: Update Feeds
+        run: cd openwrt && ./scripts/feeds update -a
+
+      - name: Install Feeds
+        run: cd openwrt && ./scripts/feeds install -a
+
+      - name: Make Defconfig Custom Configuration
+        run: |
+          chmod +x $DIY_P2_SH
+          cd openwrt
+          $GITHUB_WORKSPACE/$DIY_P2_SH
+          
+          cd ..
+          platforms=(X86 O_PI_Z)
+          for i in "${platforms[@]}"; do
+            [ -e $CONFIGS/$i.config ] && cp -r $CONFIGS/$i.config openwrt/.config
+            cd openwrt
+            make defconfig
+            cd ..
+            cp -f openwrt/.config $CONFIGS/$i.config
+          done
+          cd openwrt
+          rm -rf .config
+      
+      - name: Download Package
+        id: package
+        run: |
+          df -hT
+          cd $GITHUB_WORKSPACE/openwrt
+          make download -j8
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+          df -hT
+
+      - name: Compile Packages
+        id: compile
+        run: |
+          cd openwrt
+          if [[ "${{ github.event.inputs.is_display_detailed }}" == "true" ]]; then
+            if [[ "${{ github.event.inputs.is_single_threaded }}" == "true" ]]; then
+                echo "1 threads compile frimware"
+                make package/luci-app-passwall2/ -j1 V=s
+                for package in $(ls feeds/passwall_packages); do
+                  if [ -d "feeds/passwall_packages/$package" ]; then
+                      make package/feeds/passwall_packages/$package/compile -j1 V=s
+                  fi
+                done
+            else
+                echo "$(nproc) threads compile frimware"
+                make package/luci-app-passwall2/ -j$(nproc) V=s
+                for package in $(ls feeds/passwall_packages); do
+                  if [ -d "feeds/passwall_packages/$package" ]; then
+                      make package/feeds/passwall_packages/$package/compile -j$(nproc) V=s
+                  fi
+                done
+            fi
+          else
+            if [[ "${{ github.event.inputs.is_single_threaded }}" == "true" ]]; then
+                echo "1 threads compile frimware"
+                make -j1
+                make package/luci-app-passwall2/ -j1
+                for package in $(ls feeds/passwall_packages); do
+                  if [ -d "feeds/passwall_packages/$package" ]; then
+                      make package/feeds/passwall_packages/$package/compile -j1
+                  fi
+                done
+            else
+                echo "$(nproc) threads compile frimware"
+                make -j$(nproc)
+                make package/luci-app-passwall2/ -j$(nproc)
+                for package in $(ls feeds/passwall_packages); do
+                  if [ -d "feeds/passwall_packages/$package" ]; then
+                      make package/feeds/passwall_packages/$package/compile -j$(nproc)
+                  fi
+                done
+            fi
+          fi
+
+          df -hT
+
+      - name: Generate Source Packages
+        working-directory: /workdir
+        id: generate_image
+        run: |
+          echo "source folder size:"
+          du -hs openwrt/
+          echo
+          tar -czf output/output.tar.gz openwrt/
+  
+          echo "source code size:"
+          cd output
+          ls -lh output.tar.gz
+          echo "SOURCE_PATH=$PWD" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Source To Artifact
+        uses: actions/upload-artifact@v4
+        if: steps.generate_image.outputs.status == 'success'
+        with:
+          name: Source_${{ steps.gen_release_tag.outputs.release_tag }}
+          path: ${{ env.SOURCE_PATH }}/output.tar.gz
+          retention-days: 5

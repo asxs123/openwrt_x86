@@ -607,7 +607,7 @@ jobs:
           "luci-app-adguardhome new commit log"
           "luci-app-mosdns new commit log"
         )
-        cd $GITHUB_WORKSPACE
+        cd $GITHUB_WORKSPACE/lede
         find git_log -type f ! -name 'log' -exec rm {} +
         mkdir -p git_repositories
 

@@ -569,8 +569,8 @@ jobs:
           "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"
           "https://github.com/xiaorouji/openwrt-passwall2 --filter=blob:none"
           "https://github.com/vernesong/OpenClash.git --filter=blob:none"
-          "https://github.com/jerrykuku/luci-theme-argon.git --filter=blob:none -b 18.06"
-          "https://github.com/jerrykuku/luci-app-argon-config.git --filter=blob:none -b 18.06"
+          "https://github.com/jjm2473/luci-theme-argon.git --filter=blob:none"
+          "https://github.com/jjm2473/luci-app-argon-config.git --filter=blob:none"
           "https://github.com/rufengsuixing/luci-app-adguardhome.git --filter=blob:none"
           "https://github.com/sbwml/luci-app-mosdns --filter=blob:none -b v5"
         )

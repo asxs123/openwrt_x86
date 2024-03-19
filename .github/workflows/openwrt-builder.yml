@@ -656,7 +656,7 @@ jobs:
         echo "|=========================================|"
         ls git_log
         echo "|=========================================|"
-        cd $GITHUB_WORKSPACE
+        cd $GITHUB_WORKSPACE/lede
         rm -rf git_log.txt git_repositories
 
 
@@ -735,7 +735,7 @@ jobs:
           done
 
           echo "|=========================================|"
-          ls git_log
+          ls $GITHUB_WORKSPACE/lede/git_log
           echo "|=========================================|"
 
           echo "## What's Changed" >> release.txt
@@ -751,8 +751,8 @@ jobs:
             "openwrt-passwall"
             "openwrt-passwall2"
             "OpenClash"
-            "luci-theme-argon"
-            "luci-app-argon-config"
+            # "luci-theme-argon"
+            # "luci-app-argon-config"
             "luci-app-adguardhome"
             "luci-app-mosdns"
           )

@@ -21,9 +21,11 @@ sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/fi
 # Add Theme
 rm -rf ./feeds/luci/themes/luci-theme-argon
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
+mv -f ./feeds/third/luci-theme-argon/ ./feeds/luci/themes/luci-theme-argon
 
 rm -rf ./package/lean/luci-app-argon-config
 # git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
+mv -f ./feeds/third/luci-app-argon-config/ ./package/lean/luci-app-argon-config
 
 rm -rf ./package/lean/luci-app-adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/lean/luci-app-adguardhome
@@ -61,8 +63,8 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 ./package/custom_packag
 
 if [ ! -n "$is_wsl2op" ]; then
     # Add default login background
-    # cp -r $GITHUB_WORKSPACE/source/video/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
-    # cp -r $GITHUB_WORKSPACE/source/img/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
+    cp -r $GITHUB_WORKSPACE/source/video/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
+    cp -r $GITHUB_WORKSPACE/source/img/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
 
     # Inject download package
     mkdir -p $GITHUB_WORKSPACE/openwrt/dl
@@ -73,8 +75,8 @@ if [ ! -n "$is_wsl2op" ]; then
 
 else
     # Add default login background
-    # cp -r /home/$USER/OpenWrtAction/source/video/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
-    # cp -r /home/$USER/OpenWrtAction/source/img/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
+    cp -r /home/$USER/OpenWrtAction/source/video/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
+    cp -r /home/$USER/OpenWrtAction/source/img/* ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
 
     # Inject download package
     mkdir -p dl

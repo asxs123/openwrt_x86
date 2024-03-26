@@ -569,10 +569,10 @@ jobs:
           # "https://github.com/xiaorouji/openwrt-passwall --filter=blob:none"
           # "https://github.com/xiaorouji/openwrt-passwall2 --filter=blob:none"
           # "https://github.com/vernesong/OpenClash.git --filter=blob:none"
-          # "https://github.com/jjm2473/luci-theme-argon.git --filter=blob:none"
-          # "https://github.com/jjm2473/luci-app-argon-config.git --filter=blob:none"
+          # "https://github.com/jerrykuku/luci-theme-argon.git --filter=blob:none -b 18.06"
+          # "https://github.com/jerrykuku/luci-app-argon-config.git --filter=blob:none -b 18.06"
           "https://github.com/rufengsuixing/luci-app-adguardhome.git --filter=blob:none"
-          "https://github.com/sbwml/luci-app-mosdns --filter=11blob:none -b v5"
+          "https://github.com/sbwml/luci-app-mosdns --filter=blob:none -b v5"
         )
         LINE_NUMBERS=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
         OUTPUT_FILES=(
@@ -607,8 +607,8 @@ jobs:
           "luci-app-adguardhome new commit log"
           "luci-app-mosdns new commit log"
         )
-        cd $GITHUB_WORKSPACE/lede
-        find git_log -type f ! -name 'log' -exec rm {} +
+        cd $GITHUB_WORKSPACE
+        find ledegit_log -type f ! -name 'log' -exec rm {} +
         mkdir -p git_repositories
 
         for i in "${!REPO_URLS[@]}"; do
@@ -617,7 +617,7 @@ jobs:
           OUTPUT_FILE=${OUTPUT_FILES[$i]}
           TITLE_MESSAGE=${TITLE_MESSAGES[$i]}
           
-          line=$(sed -n "${LINE_NUMBER}p" $GITHUB_WORKSPACE/lede/git_log/log)
+          line=$(sed -n "${LINE_NUMBER}p" ledegit_log/log)
           SHA_Begin=$(echo "$line" | sed -n 's/^[^:]*://p')
           SHA_End=$(sed -n "${LINE_NUMBER}p" git_log.txt)
 
@@ -625,39 +625,39 @@ jobs:
 
           if ! git -C git_repositories/$OUTPUT_FILE cat-file -t "$SHA_Begin" >/dev/null 2>&1 || \
             ! git -C git_repositories/$OUTPUT_FILE cat-file -t "$SHA_End" >/dev/null 2>&1; then
-            sed -i "${LINE_NUMBER}s/:.*/:$SHA_End/" $GITHUB_WORKSPACE/lede/git_log/log
+            sed -i "${LINE_NUMBER}s/:.*/:$SHA_End/" ledegit_log/log
 
             echo " :x: Invalid SHA detected (Begin: $SHA_Begin, End: $SHA_End) for $OUTPUT_FILE"
-            echo "<details> <summary> <b>$TITLE_MESSAGE :x: </b>  </summary>" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "<b> It is detected that $OUTPUT_FILE has an illegal SHA value. It is possible that $OUTPUT_FILE has git rebase behavior. The relevant git update log cannot be counted. Please wait for the next compilation time.</b>" >> "git_log/$OUTPUT_FILE.log"
-            echo "" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "</details>" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
+            echo "<details> <summary> <b>$TITLE_MESSAGE :x: </b>  </summary>" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "<b> It is detected that $OUTPUT_FILE has an illegal SHA value. It is possible that $OUTPUT_FILE has git rebase behavior. The relevant git update log cannot be counted. Please wait for the next compilation time.</b>" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "</details>" >> "ledegit_log/$OUTPUT_FILE.log"
             continue
           fi
 
           if [ -z "$SHA_Begin" ]; then
-            sed -i "${LINE_NUMBER}s/:.*/:$SHA_End/" $GITHUB_WORKSPACE/lede/git_log/log
+            sed -i "${LINE_NUMBER}s/:.*/:$SHA_End/" ledegit_log/log
           elif [ "$SHA_Begin" != "$SHA_End" ]; then
-            echo "<details> <summary> <b>$TITLE_MESSAGE :new: </b>  </summary>" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "SHA|Author|Date|Message" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "-|-|-|-" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            git -C git_repositories/$OUTPUT_FILE log --pretty=format:"%h|%an|%ad|%s" "$SHA_Begin...$SHA_End" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
-            echo "</details>" >> "$GITHUB_WORKSPACE/lede/git_log/$OUTPUT_FILE.log"
+            echo "<details> <summary> <b>$TITLE_MESSAGE :new: </b>  </summary>" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "SHA|Author|Date|Message" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "-|-|-|-" >> "ledegit_log/$OUTPUT_FILE.log"
+            git -C git_repositories/$OUTPUT_FILE log --pretty=format:"%h|%an|%ad|%s" "$SHA_Begin...$SHA_End" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "" >> "ledegit_log/$OUTPUT_FILE.log"
+            echo "</details>" >> "ledegit_log/$OUTPUT_FILE.log"
             echo "|-----------------------------------|"
             echo "$OUTPUT_FILE has update log"
             echo "|-----------------------------------|"
-            sed -i "${LINE_NUMBER}s/:.*/:$SHA_End/" $GITHUB_WORKSPACE/lede/git_log/log
+            sed -i "${LINE_NUMBER}s/:.*/:$SHA_End/" ledegit_log/log
           fi
         done
 
         echo "|=========================================|"
-        ls $GITHUB_WORKSPACE/lede/git_log
+        ls ledegit_log
         echo "|=========================================|"
-        cd $GITHUB_WORKSPACE/lede
-        rm -rf $GITHUB_WORKSPACE/lede/git_log.txt git_repositories
+        cd $GITHUB_WORKSPACE
+        rm -rf git_log.txt git_repositories
 
 
     - name: Git auto update git log
@@ -735,7 +735,7 @@ jobs:
           done
 
           echo "|=========================================|"
-          ls $GITHUB_WORKSPACE/lede/git_log
+          ls ledegit_log
           echo "|=========================================|"
 
           echo "## What's Changed" >> release.txt
@@ -758,9 +758,9 @@ jobs:
           )
 
           for file in "${OUTPUT_FILES[@]}"; do
-            if [ -f "git_log/$file.log" ]; then
+            if [ -f "ledegit_log/$file.log" ]; then
               echo "found file $file.log!"
-              cat "git_log/$file.log" >> release.txt
+              cat "ledegit_log/$file.log" >> release.txt
             else
               echo "no file $file.log 404"
             fi

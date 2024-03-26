@@ -13,10 +13,13 @@
 is_wsl2op=$1
 
 # Modify default IP
-sed -i 's/192.168.1.1/10.10.0.253/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.1.200/g' package/base-files/files/bin/config_generate
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
+
+###### 取消bootstrap为默认主题 ######
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # Add Theme
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -29,6 +32,8 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git ./pack
 
 rm -rf ./package/lean/luci-app-adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/lean/luci-app-adguardhome
+
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/ddns-go
 
 # mosdns
 

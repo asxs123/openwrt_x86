@@ -24,11 +24,9 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/M
 # Add Theme
 rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
-# mv -f ./feeds/third/luci-theme-argon/ ./feeds/luci/themes/luci-theme-argon
 
 rm -rf ./package/lean/luci-app-argon-config
 git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
-# mv -f ./feeds/third/luci-app-argon-config/ ./package/lean/luci-app-argon-config
 
 rm -rf ./package/lean/luci-app-adguardhome
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/lean/luci-app-adguardhome
@@ -47,24 +45,8 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 ./package/custom_packag
 # git clone https://github.com/sbwml/v2ray-geodata ./package/custom_packages/v2ray-geodata
 
 
-# if [ ! -d "./package/lean/luci-app-argon-config" ]; then git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config;   else cd ./package/lean/luci-app-argon-config; git stash; git stash drop; git pull; cd ..; cd ..; cd ..; fi;
-# if [ ! -d "./package/lean/luci-app-adguardhome" ]; then git clone https://github.com/rufengsuixing/luci-app-adguardhome.git ./package/lean/luci-app-adguardhome;   else cd ./package/lean/luci-app-adguardhome; git stash; git stash drop; git pull; cd ..; cd ..; cd ..; fi;
-# git clone https://github.com/jerrykuku/lua-maxminddb.git
-# git clone https://github.com/jerrykuku/luci-app-vssr.git
-# git clone https://github.com/lisaac/luci-app-dockerman.git
-
-
-# Reset drive type
-# sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' package/lean/autocore/files/x86/autocore
-# sed -i '/h=${g}.*/d' package/lean/autocore/files/x86/autocore
-# sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
-
-# Close running yards
-# sed -i 's/console=tty0//g'  target/linux/x86/image/Makefile
-
-
-# rm -rf ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background
-# mkdir -p ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background
+rm -rf ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background
+mkdir -p ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background
 
 if [ ! -n "$is_wsl2op" ]; then
     # Add default login background
@@ -92,12 +74,6 @@ else
 fi
 
 
-
-          
-# Diy
-# rm -rf ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-# wget -P ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status https://github.com/smallprogram/OpenWrtAction/raw/main/source/openwrtfile/index.htm
-
 echo -e "预置Clash内核"
 mkdir -p feeds/OpenClash/luci-app-openclash/root/etc/openclash/core
 core_path="feeds/OpenClash/luci-app-openclash/root/etc/openclash/core"
@@ -118,12 +94,12 @@ wget -qO- $CLASH_META_URL | tar xOvz > $core_path/clash_meta
 chmod +x $core_path/clash*
 
 
-# git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git ./package/luci-app-unblockneteasemusic
-# echo -e "预置unblockneteasemusic内核"
-# NAME="package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
-# echo "$(uclient-fetch -qO- 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jsonfilter -e '@[0].sha')">"$NAME/core_local_ver"
-# curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
-# curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
-# curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
-# curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
-# curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git ./package/luci-app-unblockneteasemusic
+echo -e "预置unblockneteasemusic内核"
+NAME="package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
+echo "$(uclient-fetch -qO- 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jsonfilter -e '@[0].sha')">"$NAME/core_local_ver"
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key

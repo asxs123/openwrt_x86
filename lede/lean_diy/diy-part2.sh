@@ -103,3 +103,11 @@ curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/b
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
+
+
+echo -e "预置adguardhome内核"
+mkdir -p package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome
+adgcore="package/lean/luci-app-adguardhome/root/usr/bin/AdGuardHome"
+ADG_CORE_URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/$(uclient-fetch -qO- 'https://api.github.com/repos/AdguardTeam/AdGuardHome/releases' | jsonfilter -e '@[0].tag_name')/AdGuardHome_linux_amd64.tar.gz"
+wget -qO- $ADG_CORE_URL | tar xOvz > $adgcore/AdGuardHome
+chmod +x $adgcore/AdGuardHome

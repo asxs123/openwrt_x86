@@ -315,6 +315,13 @@ jobs:
           cd openwrt
           make defconfig
 
+      - name: 缓存加速
+        uses: stupidloud/cachewrtbuild@main
+        with:
+          ccache: 'true'
+          mixkey: "lede_x86"
+          prefix: ${{ github.workspace }}/openwrt
+
       - name: Download Package
         id: package
         run: |

@@ -79,11 +79,10 @@ jobs:
       run: |
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/feeds.conf.default -o openwrt/feeds.conf.default
+        sudo mkdir -p /openwrt/build
+        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o openwrt/build/diy-part1.sh
+        chmod +x openwrt/build/diy-part1.sh
         cd openwrt
-        sudo mkdir -p /build
-        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o build/diy-part1.sh
-        chmod +x build/diy-part1.sh
-        # cd openwrt
         $GITHUB_WORKSPACE/openwrt/build/diy-part1.sh
 
     - name: 更新 feeds

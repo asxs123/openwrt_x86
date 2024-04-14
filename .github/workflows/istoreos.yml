@@ -79,7 +79,8 @@ jobs:
       run: |
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/feeds.conf.default -o openwrt/feeds.conf.default
-        sudo curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o build/diy-part1.sh
+        sudo mkdir -p /build
+        wget -qO- https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh build/diy-part1.sh
         chmod +x build/diy-part1.sh
         cd openwrt
         $GITHUB_WORKSPACE/build/diy-part1.sh

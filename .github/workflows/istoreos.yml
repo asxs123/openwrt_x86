@@ -79,10 +79,11 @@ jobs:
       run: |
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/feeds.conf.default -o openwrt/feeds.conf.default
-        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o openwrt/build/diy-part1.sh
-        chmod +x openwrt/build/diy-part1.sh
+        mkdir -p /build
+        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o build/diy-part1.sh
+        chmod +x build/diy-part1.sh
         cd openwrt
-        $GITHUB_WORKSPACE/openwrt/build/diy-part1.sh
+        $GITHUB_WORKSPACE/build/diy-part1.sh
 
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -94,10 +95,10 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         # [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part2.sh -o openwrt/build/diy-part2.sh
-        chmod +x openwrt/build/diy-part2.sh
+        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part2.sh -o build/diy-part2.sh
+        chmod +x build/diy-part2.sh
         cd openwrt
-        $GITHUB_WORKSPACE/openwrt/build/diy-part2.sh
+        $GITHUB_WORKSPACE/build/diy-part2.sh
 
     - name: 缓存加速
       if: github.event.inputs.CACHEWRTBUILD_SWITCH == 'true'

@@ -13,8 +13,13 @@
 name: istore OpenWrt Builder
 
 on:
-  repository_dispatch:
   workflow_dispatch:
+    inputs:
+      CACHEWRTBUILD_SWITCH:
+        description: '缓存加速编译'
+        required: false
+        default: true
+        type: boolean
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos
@@ -72,10 +77,12 @@ jobs:
 
     - name: 加载自定义 feeds
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
+        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/feeds.conf.default -o openwrt/feeds.conf.default
+        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o build/diy-part1.sh
+        chmod +x build/diy-part1.sh
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/build/diy-part1.sh
 
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -86,12 +93,14 @@ jobs:
     - name: 生成istoreos配置文件
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
+        # [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part2.sh -o build/diy-part2.sh
+        chmod +x build/diy-part2.sh
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/build/diy-part2.sh
 
     - name: 缓存加速
+      if: github.event.inputs.CACHEWRTBUILD_SWITCH == 'true'
       uses: stupidloud/cachewrtbuild@main
       with:
         ccache: 'true'
@@ -110,7 +119,7 @@ jobs:
     - name: 上传配置文件
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ github.event.inputs.CONFIG_FILE }}.config
+        name: x86.config
         path: openwrt/.config
 
     - name: 上传根文件夹

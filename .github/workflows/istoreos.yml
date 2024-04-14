@@ -92,7 +92,6 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: 缓存加速
-      if: github.event.inputs.CACHEWRTBUILD_SWITCH == 'true'
       uses: stupidloud/cachewrtbuild@main
       with:
         ccache: 'true'

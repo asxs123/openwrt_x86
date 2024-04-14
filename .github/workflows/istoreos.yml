@@ -83,9 +83,9 @@ jobs:
     - name: 加载自定义 feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x build/diy-part1.sh
+        chmod +x $DIY_P1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/openwrt/build/diy-part1.sh
+        $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 更新 feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -97,9 +97,9 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x build/diy-part2.sh
+        chmod +x $DIY_P1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/openwrt/build/diy-part2.sh
+        $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 缓存加速
       if: github.event.inputs.CACHEWRTBUILD_SWITCH == 'true'

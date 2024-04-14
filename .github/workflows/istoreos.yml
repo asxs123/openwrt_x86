@@ -24,10 +24,10 @@ on:
 env:
   REPO_URL: https://github.com/istoreos/istoreos
   REPO_BRANCH: istoreos-22.03
-  FEEDS_CONF: iStoreOS/feeds_config/feeds.conf
-  CONFIG_FILE: iStoreOS/istore_config/x86.config
-  DIY_P1_SH: iStoreOS/diy/diy-part1.sh
-  DIY_P2_SH: iStoreOS/diy/diy-part2.sh
+  FEEDS_CONF: openwrt/build/iStoreOS/feeds.conf.default
+  CONFIG_FILE: openwrt/build/iStoreOS/x86.config
+  DIY_P1_SH: openwrt/build/iStoreOS/diy-part1.sh
+  DIY_P2_SH: openwrt/build/iStoreOS/diy-part2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -75,13 +75,15 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    - name: 拉取自定义文件
+      run: |
+        cd ${GITHUB_WORKSPACE}
+        git clone -b openwrt_x86 --depth 1 https://github.com/asxs123/ceshi openwrt/build
+
     - name: 加载自定义 feeds
       run: |
-        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/feeds.conf.default -o openwrt/feeds.conf.default
-        sudo mkdir -p /openwrt/build
-        curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part1.sh -o openwrt/build/diy-part1.sh
-        chmod +x openwrt/build/diy-part1.sh
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        chmod +x build/diy-part1.sh
         cd openwrt
         $GITHUB_WORKSPACE/openwrt/build/diy-part1.sh
 
@@ -94,10 +96,8 @@ jobs:
     - name: 生成istoreos配置文件
       run: |
         [ -e files ] && mv files openwrt/files
-        # [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        sudo curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/x86.config -o openwrt/.config
-        sudo curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part2.sh -o openwrt/build/diy-part2.sh
-        chmod +x openwrt/build/diy-part2.sh
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x build/diy-part2.sh
         cd openwrt
         $GITHUB_WORKSPACE/openwrt/build/diy-part2.sh
 

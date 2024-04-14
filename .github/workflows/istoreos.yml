@@ -24,10 +24,10 @@ on:
 env:
   REPO_URL: https://github.com/istoreos/istoreos
   REPO_BRANCH: istoreos-22.03
-  FEEDS_CONF: openwrt/build/iStoreOS/feeds.conf.default
-  CONFIG_FILE: openwrt/build/iStoreOS/x86.config
-  DIY_P1_SH: openwrt/build/iStoreOS/diy-part1.sh
-  DIY_P2_SH: openwrt/build/iStoreOS/diy-part2.sh
+  FEEDS_CONF: build/iStoreOS/feeds.conf.default
+  CONFIG_FILE: build/iStoreOS/x86.config
+  DIY_P1_SH: build/iStoreOS/diy-part1.sh
+  DIY_P2_SH: build/iStoreOS/diy-part2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -76,9 +76,11 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: 拉取自定义文件
+      working-directory: /workdir
       run: |
         cd ${GITHUB_WORKSPACE}
-        git clone -b openwrt_x86 --depth 1 https://github.com/asxs123/ceshi openwrt/build
+        git clone -b openwrt_x86 --depth 1 https://github.com/asxs123/ceshi build
+        ln -sf /workdir/build $GITHUB_WORKSPACE/build
 
     - name: 加载自定义 feeds
       run: |
@@ -97,9 +99,9 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P1_SH
+        chmod +x $DIY_P2_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: 缓存加速
       if: github.event.inputs.CACHEWRTBUILD_SWITCH == 'true'

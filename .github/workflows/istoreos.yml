@@ -94,6 +94,7 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         # [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        sudo curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/x86.config -o openwrt/.config
         sudo curl -L https://github.com/asxs123/ceshi/raw/openwrt_x86/iStoreOS/diy-part2.sh -o openwrt/diy-part2.sh
         chmod +x openwrt/diy-part2.sh
         cd openwrt

@@ -161,8 +161,8 @@ jobs:
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: |
-          openwrt/bin
-          openwrt/bin/packages/x86_64/mypackages
+          openwrt/bin/targets/x86/64/packages
+          openwrt/bin/packages/x86_64
 
     - name: 整理固件文件夹
       id: organize
